@@ -23,8 +23,3 @@
     </div>
   </v-card>
 </template>
-<script>
-  export default {
-    name: 'PhantomLogo'
-  }
-</script>
