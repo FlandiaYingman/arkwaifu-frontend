@@ -1,13 +1,16 @@
 import { createRouter, createWebHistory, RouteRecordRaw, RouterView } from 'vue-router'
 
-const Home = () => import( '@/views/Home.vue')
-const AvgView = () => import( '@/views/AvgView.vue')
-const AssetView = () => import( '@/views/AssetView.vue')
-const About = () => import( '@/views/About.vue')
-const DefaultView = () => import( '@/layouts/default/View.vue')
+const DefaultView = () => import('@/layouts/default/DefaultView.vue')
+const Home = () => import('@/views/Home.vue')
+const AvgView = () => import('@/views/AvgView.vue')
+const AvgGroupView = () => import('@/views/AvgGroupView.vue')
+const AvgStoryView = () => import('@/views/AvgStoryView.vue')
+const AssetView = () => import('@/views/AssetView.vue')
+const About = () => import('@/views/About.vue')
 
 const routes: Readonly<RouteRecordRaw[]> = [
   {
+    // Static Routes
     path: '/',
     component: DefaultView,
     children: [
@@ -20,6 +23,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
         path: 'avg',
         component: RouterView,
         children: [
+          // Static Routes
           {
             path: 'main-story',
             name: 'Main Story',
@@ -43,6 +47,18 @@ const routes: Readonly<RouteRecordRaw[]> = [
             name: 'Others',
             component: AvgView,
             props: { type: 'NONE' },
+          },
+
+          // Dynamic Routes
+          {
+            path: 'groups/:id',
+            name: 'Group',
+            component: AvgGroupView,
+          },
+          {
+            path: 'stories/:id',
+            name: 'Story',
+            component: AvgStoryView,
           },
         ],
       },

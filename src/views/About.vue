@@ -1,5 +1,5 @@
 <template>
-  <v-container class="px-16" style="max-width: 1440px">
+  <v-container>
     <p>
       <v-img src="@/assets/logo_phantom.png" width="256" />
     </p>
