@@ -356,13 +356,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/webfontloader@npm:^1.6.35":
-  version: 1.6.35
-  resolution: "@types/webfontloader@npm:1.6.35"
-  checksum: 8a809e1f8041fc9f7ec1df82d6e841bfc51732a3aa0b56a4e3d2abab86a8abce1b0db90dc9d2c594fd0d77034e2670cae3cfb714a902a0112985fa04fd4a61c8
-  languageName: node
-  linkType: hard
-
 "@typescript-eslint/eslint-plugin@npm:^5.59.1, @typescript-eslint/eslint-plugin@npm:^5.59.6":
   version: 5.59.6
   resolution: "@typescript-eslint/eslint-plugin@npm:5.59.6"
@@ -830,14 +823,12 @@ __metadata:
     "@babel/types": ^7.21.4
     "@mdi/font": 7.0.96
     "@types/node": ^18.15.0
-    "@types/webfontloader": ^1.6.35
     "@typescript-eslint/eslint-plugin": ^5.59.6
     "@vitejs/plugin-vue": ^3.2.0
     "@vue/eslint-config-typescript": ^11.0.0
     eslint: ^8.0.0
     eslint-plugin-vue: ^9.0.0
     pinia: ^2.0.23
-    roboto-fontface: "*"
     sass: ^1.62.1
     typescript: ^5.0.0
     vite: ^4.2.0
@@ -846,7 +837,6 @@ __metadata:
     vue-router: ^4.0.0
     vue-tsc: ^1.2.0
     vuetify: ^3.0.0
-    webfontloader: ^1.0.0
   languageName: unknown
   linkType: soft
 
@@ -2455,13 +2445,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"roboto-fontface@npm:*":
-  version: 0.10.0
-  resolution: "roboto-fontface@npm:0.10.0"
-  checksum: 58749bb49133974aa72d79ab1928d5d0aa1df162daab7398cbceeadc1508d222054d2e81d41ab548361a785c5cd2da97159544c3acecc8a180030c91b504be3b
-  languageName: node
-  linkType: hard
-
 "rollup@npm:^3.21.0":
   version: 3.22.0
   resolution: "rollup@npm:3.22.0"
@@ -2939,13 +2922,6 @@ __metadata:
     webpack-plugin-vuetify:
       optional: true
   checksum: b974f87165b66eaf13ad86fb717f3f8673092be7d0fb7842ea650cdc02eb0091729593464b825d91cd0b86843a65acc240ddb7649d2049cac3544afb7072d09c
-  languageName: node
-  linkType: hard
-
-"webfontloader@npm:^1.0.0":
-  version: 1.6.28
-  resolution: "webfontloader@npm:1.6.28"
-  checksum: cbebbe593cb0d27dbb4d418f7f96bd9893024f1f2062e858af76209b6524e25d766964b6e2a724f3b694fadef661dd3a01065455a96df05337b3281ca09ab656
   languageName: node
   linkType: hard
 

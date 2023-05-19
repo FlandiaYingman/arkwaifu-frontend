@@ -31,14 +31,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/types", "npm:7.21.5"],\
             ["@mdi/font", "npm:7.0.96"],\
             ["@types/node", "npm:18.16.12"],\
-            ["@types/webfontloader", "npm:1.6.35"],\
             ["@typescript-eslint/eslint-plugin", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:5.59.6"],\
             ["@vitejs/plugin-vue", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:3.2.0"],\
             ["@vue/eslint-config-typescript", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:11.0.3"],\
             ["eslint", "npm:8.40.0"],\
             ["eslint-plugin-vue", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:9.13.0"],\
             ["pinia", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:2.1.1"],\
-            ["roboto-fontface", "npm:0.10.0"],\
             ["sass", "npm:1.62.1"],\
             ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=b5f058"],\
             ["vite", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:4.3.7"],\
@@ -46,8 +44,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["vue", "npm:3.3.3"],\
             ["vue-router", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:4.2.0"],\
             ["vue-tsc", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:1.7.4"],\
-            ["vuetify", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:3.2.5"],\
-            ["webfontloader", "npm:1.6.28"]\
+            ["vuetify", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:3.2.5"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -491,15 +488,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-semver-npm-7.5.0-4823ff34be-0a64b9b9c7.zip/node_modules/@types/semver/",\
           "packageDependencies": [\
             ["@types/semver", "npm:7.5.0"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@types/webfontloader", [\
-        ["npm:1.6.35", {\
-          "packageLocation": "./.yarn/cache/@types-webfontloader-npm-1.6.35-a8ff587e6f-8a809e1f80.zip/node_modules/@types/webfontloader/",\
-          "packageDependencies": [\
-            ["@types/webfontloader", "npm:1.6.35"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -1225,14 +1213,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/types", "npm:7.21.5"],\
             ["@mdi/font", "npm:7.0.96"],\
             ["@types/node", "npm:18.16.12"],\
-            ["@types/webfontloader", "npm:1.6.35"],\
             ["@typescript-eslint/eslint-plugin", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:5.59.6"],\
             ["@vitejs/plugin-vue", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:3.2.0"],\
             ["@vue/eslint-config-typescript", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:11.0.3"],\
             ["eslint", "npm:8.40.0"],\
             ["eslint-plugin-vue", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:9.13.0"],\
             ["pinia", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:2.1.1"],\
-            ["roboto-fontface", "npm:0.10.0"],\
             ["sass", "npm:1.62.1"],\
             ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=b5f058"],\
             ["vite", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:4.3.7"],\
@@ -1240,8 +1226,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["vue", "npm:3.3.3"],\
             ["vue-router", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:4.2.0"],\
             ["vue-tsc", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:1.7.4"],\
-            ["vuetify", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:3.2.5"],\
-            ["webfontloader", "npm:1.6.28"]\
+            ["vuetify", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:3.2.5"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -3034,15 +3019,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["roboto-fontface", [\
-        ["npm:0.10.0", {\
-          "packageLocation": "./.yarn/cache/roboto-fontface-npm-0.10.0-6476b79561-58749bb491.zip/node_modules/roboto-fontface/",\
-          "packageDependencies": [\
-            ["roboto-fontface", "npm:0.10.0"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["rollup", [\
         ["npm:3.22.0", {\
           "packageLocation": "./.yarn/cache/rollup-npm-3.22.0-9f29f42b1d-6da2bfe1eb.zip/node_modules/rollup/",\
@@ -3654,15 +3630,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "vue-i18n",\
             "vue",\
             "webpack-plugin-vuetify"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["webfontloader", [\
-        ["npm:1.6.28", {\
-          "packageLocation": "./.yarn/cache/webfontloader-npm-1.6.28-5e6803960c-cbebbe593c.zip/node_modules/webfontloader/",\
-          "packageDependencies": [\
-            ["webfontloader", "npm:1.6.28"]\
           ],\
           "linkType": "HARD"\
         }]\
