@@ -9,8 +9,7 @@
     </p>
     <p class="text-body-1">
       Arkwaifu is a website which, arranges and provides almost all picture assets extracted from <b>Arknights</b> (the
-      game).
-      Arkwaifu also enlarges (4x) the picture assets with super-resolution neural networks - Real-ESRGAN.
+      game). Arkwaifu also enlarges (4x) the picture assets with super-resolution neural networks - Real-ESRGAN.
     </p>
     <p class="text-body-1">
       Discover the assets starting from the navigation bar on the left. Have fun!
