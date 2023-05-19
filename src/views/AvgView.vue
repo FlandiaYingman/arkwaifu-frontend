@@ -9,9 +9,9 @@
   import { useApi } from '@/arkwaifu-api'
   import GroupSheet from '@/components/avg/GroupSheet.vue'
 
-  const props = defineProps({
+  const props = defineProps<{
     type: '' | 'MAINLINE' | 'ACTIVITY' | 'MINI_ACTIVITY' | 'NONE',
-  })
+  }>()
   const api = useApi()
   const groups = computed(() => {
     if (props.type) {
