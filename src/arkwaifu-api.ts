@@ -1,23 +1,36 @@
 import { defineStore } from 'pinia'
-import { shallowRef } from 'vue'
+import { computed, shallowRef } from 'vue'
 
 const BASE_URL = 'https://arkwaifu.cc/api/v0'
 
 export const useApi = defineStore('api', () => {
-  const groups = shallowRef(new Array<Group>())
-  const stories = shallowRef(new Array<Story>())
-  const assets = shallowRef(new Array<Asset>())
-
-  function getGroups() {
-    if (groups.value.length == 0) {
+  const groupsRef = shallowRef(new Map<string, Group>)
+  const groups = computed(() => {
+    if (storiesRef.value.size == 0) {
       fetch(`${BASE_URL}/avg/groups`)
         .then(response => response.json())
-        .then(json => groups.value = json)
+        .then((json: Group[]) => new Map(json.map(group => [group.id, group])))
+        .then((map: Map<string, Group>) => groupsRef.value = map)
     }
-    return groups.value
+    return groupsRef
+  })
+
+  const storiesRef = shallowRef(new Map<string, Story>)
+  const stories = computed(() => {
+    if (storiesRef.value.size == 0) {
+      fetch(`${BASE_URL}/avg/stories`)
+        .then(response => response.json())
+        .then((json: Story[]) => new Map(json.map(story => [story.id, story])))
+        .then((map: Map<string, Story>) => storiesRef.value = map)
+    }
+    return storiesRef
+  })
+
+  function getAssetUrl(asset: Asset, variant: 'img' | 'timg' | 'real-esrgan'): string {
+    return `${BASE_URL}/asset/variants/${encodeURIComponent(asset.kind)}/${encodeURIComponent(asset.name)}/${encodeURIComponent(variant)}/file`
   }
 
-  return { groups, stories, assets, getGroups }
+  return { storiesRef, groupsRef, groups, stories, getAssetUrl }
 })
 
 export interface Group {
@@ -27,16 +40,28 @@ export interface Group {
   stories: Story[]
 }
 
+export enum StoryTag {
+  BeforeOperation = '行动前',
+  AfterOperation = '行动后',
+  Interludes = '幕间',
+}
+
 export interface Story {
   id: string,
   code: string,
   name: string,
-  tag: string,
-  groupId: string,
+  tag: StoryTag,
+  groupID: string,
   assets: Asset[]
 }
 
 export interface Asset {
   name: string,
-  kind: '行动前' | '行动后' | '幕间'
+  kind: AssetKind,
+}
+
+export enum AssetKind {
+  Images = 'images',
+  Backgrounds = 'backgrounds',
+  Characters = 'characters',
 }

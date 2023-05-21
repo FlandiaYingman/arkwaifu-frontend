@@ -54,11 +54,13 @@ const routes: Readonly<RouteRecordRaw[]> = [
             path: 'groups/:id',
             name: 'Group',
             component: AvgGroupView,
+            props: true,
           },
           {
             path: 'stories/:id',
             name: 'Story',
             component: AvgStoryView,
+            props: true,
           },
         ],
       },

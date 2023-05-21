@@ -15,9 +15,9 @@
   const api = useApi()
   const groups = computed(() => {
     if (props.type) {
-      return api.getGroups().filter(el => el.type == props.type)
+      return [...api.groups.value.values()].filter(el => el.type == props.type)
     } else {
-      return api.getGroups()
+      return [...api.groups.value.values()]
     }
   })
 </script>

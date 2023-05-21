@@ -1,5 +1,5 @@
 <template>
-  <v-card :to="{ name: 'Story', params: { id: story.id } }">
+  <v-card :to="{ name: 'Story', params: { id: story.id } }" :variant="focused ? 'tonal' : 'elevated'">
     <template #title>{{ story.name }}</template>
     <template #subtitle>
       {{ story.code }} {{ story.tag }}<br />
@@ -11,5 +11,8 @@
 <script setup lang="ts">
   import { Story } from '@/arkwaifu-api'
 
-  defineProps<{ story: Story }>()
+  defineProps<{
+    story: Story,
+    focused: boolean,
+  }>()
 </script>

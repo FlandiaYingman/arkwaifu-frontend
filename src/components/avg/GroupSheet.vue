@@ -8,10 +8,10 @@
       <p class="text-caption text-medium-emphasis">{{ group.id }}</p>
       <v-row class="mx-1 my-2">
         <v-col class="v-col-2">
-          <group-card :group="group" />
+          <group-card :group="group" :focused="focus?.id == group.id" />
         </v-col>
         <v-col v-for="story in group.stories" class="v-col-2">
-          <story-card :story="story" />
+          <story-card :story="story" :focused="focus?.id == story.id" />
         </v-col>
       </v-row>
     </v-container>
@@ -19,11 +19,14 @@
 </template>
 
 <script setup lang="ts">
-  import { Group } from '@/arkwaifu-api'
+  import { Group, Story } from '@/arkwaifu-api'
   import StoryCard from '@/components/avg/StoryCard.vue'
   import GroupCard from '@/components/avg/GroupCard.vue'
 
-  defineProps<{ group: Group }>()
+  defineProps<{
+    group: Group,
+    focus?: Group | Story,
+  }>()
 </script>
 
 
