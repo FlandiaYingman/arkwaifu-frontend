@@ -94,6 +94,14 @@ const routes: Readonly<RouteRecordRaw[]> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  scrollBehavior: (to, from) => {
+    const dynamicRouteNames = ['Group', 'Story', 'Asset']
+    if (dynamicRouteNames.includes(<string>to.name) && dynamicRouteNames.includes(<string>from.name)) {
+      return false
+    } else {
+      return { top: 0, behavior: 'smooth' }
+    }
+  },
 })
 
 export default router
