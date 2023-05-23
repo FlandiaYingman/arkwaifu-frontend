@@ -1,7 +1,14 @@
 import { defineStore } from 'pinia'
 import { computed, shallowRef } from 'vue'
 
-const BASE_URL = 'https://arkwaifu.cc/api/v0'
+const BASE_URL = (() => {
+  if (import.meta.env.DEV) {
+    console.log('App running in development mode, use arkwaifu.cc as the base url for API')
+    return 'https://arkwaifu.cc/api/v0'
+  } else {
+    return '/api/v0'
+  }
+})()
 
 export const useApi = defineStore('api', () => {
   const groupsRef = shallowRef(new Map<string, Group>)
