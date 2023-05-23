@@ -26,11 +26,30 @@ export const useApi = defineStore('api', () => {
     return storiesRef
   })
 
+  const assetsRef = shallowRef(new Map<string, Asset>)
+  const assets = computed(() => {
+    if (assetsRef.value.size == 0) {
+      fetch(`${BASE_URL}/asset/assets`)
+        .then(response => response.json())
+        .then((json: Asset[]) => new Map(json.map(asset => [`${asset.kind}/${asset.name}`, asset])))
+        .then((map: Map<string, Asset>) => assetsRef.value = map)
+    }
+    return assetsRef
+  })
+
   function getAssetUrl(asset: Asset, variant: 'img' | 'timg' | 'real-esrgan'): string {
     return `${BASE_URL}/asset/variants/${encodeURIComponent(asset.kind)}/${encodeURIComponent(asset.name)}/${encodeURIComponent(variant)}/file`
   }
 
-  return { storiesRef, groupsRef, groups, stories, getAssetUrl }
+  return {
+    groupsRef,
+    storiesRef,
+    assetsRef,
+    groups,
+    stories,
+    assets,
+    getAssetUrl,
+  }
 })
 
 export interface Group {
@@ -58,10 +77,16 @@ export interface Story {
 export interface Asset {
   name: string,
   kind: AssetKind,
+  variants: AssetVariant[]
 }
 
 export enum AssetKind {
   Images = 'images',
   Backgrounds = 'backgrounds',
   Characters = 'characters',
+}
+
+export interface AssetVariant {
+  variant: string,
+  filename: string,
 }

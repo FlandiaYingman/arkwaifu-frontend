@@ -79,6 +79,12 @@ const routes: Readonly<RouteRecordRaw[]> = [
         name: 'About',
         component: About,
       },
+      {
+        name: 'Asset',
+        path: 'assets/:kind/:name',
+        component: AssetView,
+        props: true,
+      },
     ],
   },
 ]
