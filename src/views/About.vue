@@ -14,7 +14,7 @@
       <v-avatar image="@/assets/FlandiaYingman.png" size="192" />
     </p>
     <p class="text-body-1">
-      I, Flandia Yingman (<a href="https://github.com/FlandiaYingman">@FlandiaYingman</a>), am the webmaster, and
+      I am Flandia Yingman (<a href="https://github.com/FlandiaYingman">@FlandiaYingman</a>), the webmaster and
       currently the sole maintainer of Arkwaifu. If you have any questions, or want to contribute to Arkwaifu, feel
       free to create an issue or pull request to <a href="https://github.com/FlandiaYingman/arkwaifu">the repository</a>.
       Any questions, comments, suggestions and contribution are welcome!
