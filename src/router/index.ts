@@ -6,6 +6,8 @@ const AvgView = () => import('@/views/AvgView.vue')
 const AvgGroupView = () => import('@/views/AvgGroupView.vue')
 const AvgStoryView = () => import('@/views/AvgStoryView.vue')
 const AssetView = () => import('@/views/AssetView.vue')
+const NonAvgView = () => import('@/views/NonAvgView.vue')
+const AllAssetsView = () => import('@/views/AllAssetsView.vue')
 const About = () => import('@/views/About.vue')
 
 const routes: Readonly<RouteRecordRaw[]> = [
@@ -67,12 +69,12 @@ const routes: Readonly<RouteRecordRaw[]> = [
       {
         path: 'non-avg',
         name: 'Non-AVG',
-        component: AssetView,
+        component: NonAvgView,
       },
       {
         path: 'all',
         name: 'All',
-        component: AssetView,
+        component: AllAssetsView,
       },
       {
         path: 'about',
