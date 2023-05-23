@@ -6,16 +6,14 @@
     </p>
     <v-row class="mx-1 my-2">
       <v-col v-for="asset in assets" class="v-col-2">
-        <v-card>
-          <v-img :src="API.getAssetUrl(asset, 'timg')" />
-        </v-card>
-        <p class="text-caption">{{ assetsKind }}/{{ asset.name }}</p>
+        <asset-card :asset="asset" />
       </v-col>
     </v-row>
   </v-container>
 </template>
 <script setup lang="ts">
   import { Asset, AssetKind, useApi } from '@/arkwaifu-api'
+  import AssetCard from '@/components/asset/AssetCard.vue'
 
   defineProps<{
     assets: Asset[],
