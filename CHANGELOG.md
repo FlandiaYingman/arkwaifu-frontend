@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/FlandiaYingman/arkwaifu-frontend/compare/v0.1.0...v0.1.1) (2023-05-24)
+
+
+### Miscellaneous Chores
+
+* release 0.1.1 ([aec9ac5](https://github.com/FlandiaYingman/arkwaifu-frontend/commit/aec9ac5b14347b32fe9b4c87a11455eb1e8dec77))
+
 ## 0.1.0 (2023-05-24)
 
 
