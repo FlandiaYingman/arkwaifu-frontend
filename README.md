@@ -1,5 +1,5 @@
 <!--suppress ALL-->
-<img src="src/assets/logo_phantom.png" alt="logo" height="224" width="224" style="float: right"/>
+<img src="src/assets/logo_phantom.png" alt="logo" align="right" height="224" width="224"/>
 
 # Arkwaifu Frontend
 
