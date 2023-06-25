@@ -19,7 +19,10 @@
 
   const story = ref<Story>()
   const group = ref<StoryGroup>()
-  const artsOfStory = computed(() => [...(story.value?.pictureArts ?? []), ...(story.value?.characterArts ?? [])])
+  const artsOfStory = computed(() =>
+    [...(story.value?.pictureArts ?? []), ...(story.value?.characterArts ?? [])]
+      .map(storyArt => ({ id: storyArt.id, category: storyArt.category, variants: [] })),
+  )
 
   watch(() => props.id, async (value) => {
     story.value = await api.fetchStoryByID(value)

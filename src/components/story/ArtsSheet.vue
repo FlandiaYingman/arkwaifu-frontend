@@ -22,7 +22,7 @@
 
 
   const props = withDefaults(defineProps<{
-    arts: Array<Art>
+    arts: Art[]
   }>(), {
     arts: () => [],
   })

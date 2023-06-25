@@ -9,10 +9,10 @@
 </template>
 
 <script setup lang="ts">
-  import { Group } from '@/arkwaifu-api'
+  import { StoryGroup } from '@/arkwaifu-api'
 
   defineProps<{
-    group: Group,
+    group: StoryGroup,
     focused: boolean,
   }>()
 </script>

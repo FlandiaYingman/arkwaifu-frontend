@@ -20,7 +20,8 @@
   const group = ref<StoryGroup>()
   const artsOfGroup = computed(() => group.value
     ?.stories
-    .flatMap(story => [...story.pictureArts, ...story.characterArts]),
+    .flatMap(story => [...story.pictureArts, ...story.characterArts])
+    .map(storyArt => ({ id: storyArt.id, category: storyArt.category, variants: [] })),
   )
 
   watch(() => props.id, async (value) => {
