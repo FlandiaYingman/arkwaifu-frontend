@@ -2,10 +2,10 @@ import { defineStore } from 'pinia'
 
 const BASE_URL = (() => {
   if (import.meta.env.DEV) {
-    console.log('App running in development mode, use arkwaifu.cc as the base url for API')
+    console.log('App running in development mode, use localhost:7080 as the base url for API')
     return 'http://localhost:7080/api/v1'
   } else {
-    return '/api/v0'
+    return '/api/v1'
   }
 })()
 
