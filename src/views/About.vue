@@ -7,8 +7,8 @@
       About Arkwaifu...
     </p>
     <p class="text-body-1">
-      Arkwaifu is a website which, arranges and provides almost all picture assets extracted from <b>Arknights</b> (the
-      game). Arkwaifu also enlarges (4x) the picture assets with super-resolution neural networks - Real-ESRGAN.
+      Arkwaifu is a website which, arranges and provides almost all artworks extracted from <b>Arknights</b> (the
+      game). Arkwaifu also enlarges (4x) the artworks with super-resolution neural networks - Real-ESRGAN.
     </p>
     <p>
       <v-avatar image="@/assets/FlandiaYingman.png" size="192" />

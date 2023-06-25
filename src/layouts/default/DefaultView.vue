@@ -19,7 +19,7 @@
   import { ref } from 'vue'
   import NavigationDrawer from '@/components/NavigationDrawer.vue'
 
-  const drawerOpen = ref(true)
+  const drawerOpen = ref<boolean | null>(null)
 </script>
 
 <style lang="scss">

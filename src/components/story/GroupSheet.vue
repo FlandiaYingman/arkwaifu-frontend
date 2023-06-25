@@ -19,13 +19,13 @@
 </template>
 
 <script setup lang="ts">
-  import { Group, Story } from '@/arkwaifu-api'
-  import StoryCard from '@/components/avg/StoryCard.vue'
-  import GroupCard from '@/components/avg/GroupCard.vue'
+  import { Story, StoryGroup } from '@/arkwaifu-api'
+  import StoryCard from '@/components/story/StoryCard.vue'
+  import GroupCard from '@/components/story/GroupCard.vue'
 
   defineProps<{
-    group: Group,
-    focus?: Group | Story,
+    group: StoryGroup,
+    focus?: StoryGroup | Story,
   }>()
 </script>
 

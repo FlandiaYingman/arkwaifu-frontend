@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer
     :model-value="modelValue"
-    @update:model-value="$emit('update:modelValue', $event.target.value)"
+    @update:model-value="$emit('update:modelValue', $event)"
     width="360">
     <PhantomLogo />
 
@@ -23,16 +23,16 @@
         <template #activator="{ props }">
           <v-list-item
             prepend-icon="mdi-television"
-            subtitle="Assets indexed by AVG"
-            title="AVG"
+            subtitle="Arts that have appeared in the Stories"
+            title="Stories"
             v-bind="props"
           />
         </template>
         <v-list-item
-          :to="{ name: 'Main Story' }"
+          :to="{ name: 'Main Stories' }"
           prepend-icon="mdi-cube"
-          subtitle="Main Story"
-          title="Main Theme"
+          subtitle="Main Stories"
+          title="Main Themes"
         />
         <v-list-item
           :to="{ name: 'Major Events' }"
@@ -54,18 +54,18 @@
         />
       </v-list-group>
       <v-list-item
-        :to="{ name: 'Non-AVG' }"
+        :to="{ name: 'Non-Stories' }"
         color="primary"
         prepend-icon="mdi-television-off"
-        subtitle="Assets that are not in AVG"
-        title="Non-AVG"
+        subtitle="Arts that have not appeared in the Stories"
+        title="Non-Stories"
       />
       <v-list-item
         :to="{ name: 'All' }"
         color="primary"
         prepend-icon="mdi-all-inclusive"
         subtitle="May take a long time! "
-        title="All Assets"
+        title="All Arts"
       />
       <v-list-item
         :to="{ name: 'About' }"
@@ -76,6 +76,7 @@
     </v-list>
   </v-navigation-drawer>
 </template>
+
 <script setup lang="ts">
   import PhantomLogo from './PhantomLogo.vue'
 

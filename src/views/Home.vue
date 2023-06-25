@@ -8,16 +8,16 @@
       Welcome to Arkwaifu!
     </p>
     <p class="text-body-1">
-      Arkwaifu is a website which, arranges and provides almost all picture assets extracted from <b>Arknights</b> (the
-      game). Arkwaifu also enlarges (4x) the picture assets with super-resolution neural networks - Real-ESRGAN.
+      Arkwaifu is a website which, arranges and provides almost all artworks extracted from <b>Arknights</b> (the
+      game). Arkwaifu also enlarges (4x) the artworks with super-resolution neural networks - Real-ESRGAN.
     </p>
     <p class="text-body-1">
-      Discover the assets starting from the navigation bar on the left. Have fun!
+      Discover the artworks starting from the navigation bar on the left. Have fun!
     </p>
 
-    <p class="text-h4">Available Assets</p>
+    <p class="text-h4">Available Arts</p>
     <p class="text-body-1">
-      Now, only assets that appear in the "in-game stories (<b>AVG</b>)", are available, including <b>images</b>, <b>backgrounds</b>
+      Now, only arts that appear in the "in-game stories", are available, including <b>images</b>, <b>backgrounds</b>
       and <b>characters</b>.
     </p>
 
@@ -27,12 +27,11 @@
     </p>
     <p class="text-body-1">
       <v-card max-width="864" variant="flat">
-        <!-- TODO: Use relative URL instead -->
-        <v-img src="https://arkwaifu.cc/api/v0/asset/variants/images/32_i18/img/file" />
+        <v-img :src="api.getArtContentURL('32_i18', 'origin')" />
       </v-card>
     </p>
     <p class="text-caption">
-      images/32_i18, from AVG "11-15 (淬火尘霾-土地震颤)", Logos casting a spell against 血魔大君
+      images/32_i18, from story "11-15 (淬火尘霾-土地震颤)", Logos casting a spell against 血魔大君
     </p>
 
     <p class="text-h5">Backgrounds</p>
@@ -41,12 +40,11 @@
     </p>
     <p class="text-body-1">
       <v-card max-width="864" variant="flat">
-        <!-- TODO: Use relative URL instead -->
-        <v-img src="https://arkwaifu.cc/api/v0/asset/variants/backgrounds/bg_courtyard/img/file" />
+        <v-img :src="api.getArtContentURL('bg_courtyard', 'origin')" />
       </v-card>
     </p>
     <p class="text-caption">
-      backgrounds/bg_courtyard, from AVG "NL-2 (长夜临光-垂死的刺)", Nearl's courtyard, located in Kazimierz
+      backgrounds/bg_courtyard, from story "NL-2 (长夜临光-垂死的刺)", Nearl's courtyard, located in Kazimierz
     </p>
 
     <p class="text-h5">Characters</p>
@@ -54,28 +52,22 @@
       Characters are the artworks that represents characters that appear during dialogue.
     </p>
     <p class="text-body-1">
-      <v-container class="ma-0 pa-0" style="max-width: 864px">
-        <v-row dense>
-          <v-col>
-            <v-card variant="flat">
-              <!-- TODO: Use relative URL instead -->
-              <v-img src="https://arkwaifu.cc/api/v0/asset/variants/characters/char_250_phantom_1%233%241/img/file" />
-            </v-card>
-          </v-col>
-          <v-col>
-            <v-card variant="flat">
-              <!-- TODO: Use relative URL instead -->
-              <v-img src="https://arkwaifu.cc/api/v0/asset/variants/characters/char_250_phantom_1%233%241/alpha/file" />
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
+      <v-card max-width="864" variant="flat">
+        <v-img :src="api.getArtContentURL('char_250_phantom_1#3$1', 'origin')" />
+      </v-card>
     </p>
     <p class="text-caption">
-      characters/char_250_phantom_1#3$1, from AVG "踏寻往昔之风-交错光影", Phantom, painful of taking his mask off<br />
+      characters/char_250_phantom_1#3$1, from story "踏寻往昔之风-交错光影", Phantom, painful of taking his mask
+      off<br />
     </p>
   </v-container>
 </template>
+
+<script setup lang="ts">
+  import { useApi } from '@/arkwaifu-api'
+
+  const api = useApi()
+</script>
 
 <style lang="scss" scoped>
   p, ul {
