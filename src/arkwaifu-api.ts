@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { readonly } from 'vue'
 
 const BASE_URL = (() => {
   if (import.meta.env.DEV) {
@@ -9,8 +10,6 @@ const BASE_URL = (() => {
   }
 })()
 
-const SERVER = 'CN'
-
 export enum Category {
   image = 'image',
   background = 'background',
@@ -18,7 +17,14 @@ export enum Category {
   character = 'character'
 }
 
-export type Server = 'CN' | 'EN' | 'JP' | 'KR' | 'TW'
+export enum Server {
+  CN = 'CN',
+  EN = 'EN',
+  JP = 'JP',
+  KR = 'KR',
+  // Taiwan server hasn't been implemented yet.
+  // TW = 'TW'
+}
 
 export interface Art {
   id: string
@@ -87,26 +93,35 @@ export interface CharacterArt extends StoryArt {
 }
 
 export const useApi = defineStore('api', () => {
+  const server = readonly(JSON.parse(localStorage.getItem('server') ?? 'null') ?? Server.CN)
+
+  function switchServer(newServer: Server) {
+    if (newServer != server) {
+      localStorage.setItem('server', JSON.stringify(newServer))
+      location.reload()
+    }
+  }
+
   async function fetchStoryGroupsByType(type: string): Promise<StoryGroup[]> {
-    return fetch(`${BASE_URL}/${SERVER}/story-groups?type=${type}`)
+    return fetch(`${BASE_URL}/${server}/story-groups?type=${type}`)
       .then(el => el.json())
       .then(el => (el as StoryGroup[]))
   }
 
   async function fetchStoryGroupByID(id: string): Promise<StoryGroup> {
     id = encodeURIComponent(id)
-    return fetch(`${BASE_URL}/${SERVER}/story-groups/${id}`)
+    return fetch(`${BASE_URL}/${server}/story-groups/${id}`)
       .then(resp => resp.json())
   }
 
   async function fetchStoryByID(id: string): Promise<Story> {
     id = encodeURIComponent(id)
-    return fetch(`${BASE_URL}/${SERVER}/stories/${id}`)
+    return fetch(`${BASE_URL}/${server}/stories/${id}`)
       .then(resp => resp.json())
   }
 
   async function fetchStoryArts(): Promise<StoryArt[]> {
-    const resp = await fetch(`${BASE_URL}/${SERVER}/arts`)
+    const resp = await fetch(`${BASE_URL}/${server}/arts`)
     return await resp.json()
   }
 
@@ -127,6 +142,9 @@ export const useApi = defineStore('api', () => {
   }
 
   return {
+    server,
+    switchServer,
+
     fetchStoryGroupsByType,
     fetchStoryGroupByID,
     fetchStoryByID,
