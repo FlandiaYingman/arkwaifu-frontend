@@ -2,7 +2,7 @@
   <v-card :to="{ name: 'Story', params: { id: story.id } }" :variant="focused ? 'tonal' : 'elevated'">
     <template #title>{{ story.name }}</template>
     <template #subtitle>
-      {{ story.code }} {{ story.tag }}<br />
+      {{ story.code }} {{ story.tagText }}<br />
       {{ story.id }}
     </template>
   </v-card>
