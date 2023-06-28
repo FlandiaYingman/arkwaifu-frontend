@@ -9,7 +9,7 @@ const BASE_URL = (() => {
   }
 })()
 
-const SERVER = 'EN'
+const SERVER = 'CN'
 
 export enum Category {
   image = 'image',
