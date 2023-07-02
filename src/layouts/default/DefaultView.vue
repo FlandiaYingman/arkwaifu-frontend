@@ -47,7 +47,7 @@
   const server = computed<Server>(() => Server[Object.keys(Server)[serverNum.value] as keyof typeof Server])
   watchPostEffect(() => api.switchServer(server.value))
 
-  const langNum = ref(Object.values(Locale).indexOf(i18n.locale.value))
+  const langNum = ref(Object.values(Locale).indexOf(i18n.locale.value as Locale))
   const lang = computed<Locale>(() => Locale[Object.keys(Locale)[langNum.value] as keyof typeof Locale])
   watchPostEffect(() => i18n.locale.value = lang.value)
 </script>
