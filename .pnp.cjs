@@ -31,14 +31,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/types", "npm:7.21.5"],\
             ["@intlify/unplugin-vue-i18n", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:0.11.0"],\
             ["@mdi/font", "npm:7.0.96"],\
+            ["@types/file-saver", "npm:2.0.5"],\
             ["@types/lodash", "npm:4.14.194"],\
+            ["@types/mime-types", "npm:2.1.1"],\
             ["@types/node", "npm:18.16.12"],\
             ["@typescript-eslint/eslint-plugin", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:5.59.6"],\
             ["@vitejs/plugin-vue", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:3.2.0"],\
             ["@vue/eslint-config-typescript", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:11.0.3"],\
             ["eslint", "npm:8.40.0"],\
             ["eslint-plugin-vue", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:9.13.0"],\
+            ["file-saver", "npm:2.0.5"],\
             ["lodash", "npm:4.17.21"],\
+            ["mime-types", "npm:2.1.35"],\
             ["pinia", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:2.1.1"],\
             ["sass", "npm:1.62.1"],\
             ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=b5f058"],\
@@ -651,6 +655,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/file-saver", [\
+        ["npm:2.0.5", {\
+          "packageLocation": "./.yarn/cache/@types-file-saver-npm-2.0.5-b1e5b3252c-a31d6ee2ab.zip/node_modules/@types/file-saver/",\
+          "packageDependencies": [\
+            ["@types/file-saver", "npm:2.0.5"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@types/json-schema", [\
         ["npm:7.0.11", {\
           "packageLocation": "./.yarn/cache/@types-json-schema-npm-7.0.11-79462ae5ca-527bddfe62.zip/node_modules/@types/json-schema/",\
@@ -665,6 +678,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-lodash-npm-4.14.194-f099c0742e-113f34831c.zip/node_modules/@types/lodash/",\
           "packageDependencies": [\
             ["@types/lodash", "npm:4.14.194"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/mime-types", [\
+        ["npm:2.1.1", {\
+          "packageLocation": "./.yarn/cache/@types-mime-types-npm-2.1.1-2f761de0b8-106b5d556a.zip/node_modules/@types/mime-types/",\
+          "packageDependencies": [\
+            ["@types/mime-types", "npm:2.1.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -1500,14 +1522,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/types", "npm:7.21.5"],\
             ["@intlify/unplugin-vue-i18n", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:0.11.0"],\
             ["@mdi/font", "npm:7.0.96"],\
+            ["@types/file-saver", "npm:2.0.5"],\
             ["@types/lodash", "npm:4.14.194"],\
+            ["@types/mime-types", "npm:2.1.1"],\
             ["@types/node", "npm:18.16.12"],\
             ["@typescript-eslint/eslint-plugin", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:5.59.6"],\
             ["@vitejs/plugin-vue", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:3.2.0"],\
             ["@vue/eslint-config-typescript", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:11.0.3"],\
             ["eslint", "npm:8.40.0"],\
             ["eslint-plugin-vue", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:9.13.0"],\
+            ["file-saver", "npm:2.0.5"],\
             ["lodash", "npm:4.17.21"],\
+            ["mime-types", "npm:2.1.35"],\
             ["pinia", "virtual:2617538e53fbbc3f4370e62b946ad7cb1fbf5642b40648c97e1ef61fdda37b8211e287929ae42d62cef5fd488084f2fd3fb258f6520129c5d5c1d6532cc346c7#npm:2.1.1"],\
             ["sass", "npm:1.62.1"],\
             ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=b5f058"],\
@@ -2205,6 +2231,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["file-saver", [\
+        ["npm:2.0.5", {\
+          "packageLocation": "./.yarn/cache/file-saver-npm-2.0.5-2c3bc40d53-c62d96e5ce.zip/node_modules/file-saver/",\
+          "packageDependencies": [\
+            ["file-saver", "npm:2.0.5"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["fill-range", [\
         ["npm:7.0.1", {\
           "packageLocation": "./.yarn/cache/fill-range-npm-7.0.1-b8b1817caa-cc283f4e65.zip/node_modules/fill-range/",\
@@ -2833,6 +2868,25 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["micromatch", "npm:4.0.5"],\
             ["braces", "npm:3.0.2"],\
             ["picomatch", "npm:2.3.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["mime-db", [\
+        ["npm:1.52.0", {\
+          "packageLocation": "./.yarn/cache/mime-db-npm-1.52.0-b5371d6fd2-0d99a03585.zip/node_modules/mime-db/",\
+          "packageDependencies": [\
+            ["mime-db", "npm:1.52.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["mime-types", [\
+        ["npm:2.1.35", {\
+          "packageLocation": "./.yarn/cache/mime-types-npm-2.1.35-dd9ea9f3e2-89a5b7f1de.zip/node_modules/mime-types/",\
+          "packageDependencies": [\
+            ["mime-types", "npm:2.1.35"],\
+            ["mime-db", "npm:1.52.0"]\
           ],\
           "linkType": "HARD"\
         }]\
