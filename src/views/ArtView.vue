@@ -43,17 +43,25 @@
     <v-window v-model="tab" style="min-width: 100%; aspect-ratio: 1/1">
       <v-window-item v-for="(variant, i) in art.variants" :key="variant.variation" :value="i">
         <v-sheet>
-          <img :src="api.getArtContentURL(art.id, variant.variation)" alt=""
+          <img :id="i" :src="api.getArtContentURL(art.id, variant.variation)" alt=""
                style="max-width: 100%;" />
           <p class="text-caption">{{ art.category }}/{{ art.id }}</p>
         </v-sheet>
-        <v-btn prepend-icon="mdi-download"
-               class="mx-2"
-               :href="api.getArtContentURL(art.id, variant.variation)">
+        <v-btn @click="download(art.id, variant.variation, 'image/webp')"
+               prepend-icon="mdi-download"
+               class="mx-2">
           Download (WebP)
         </v-btn>
-        <v-btn prepend-icon="mdi-download" class="mx-2" disabled>Download (JPEG) (Coming Soon)</v-btn>
-        <v-btn prepend-icon="mdi-download" class="mx-2" disabled>Download (PNG) (Coming Soon)</v-btn>
+        <v-btn @click="download(art.id, variant.variation, 'image/jpeg')"
+               prepend-icon="mdi-download"
+               class="mx-2">
+          Download (JPEG)
+        </v-btn>
+        <v-btn @click="download(art.id, variant.variation, 'image/png')"
+               prepend-icon="mdi-download"
+               class="mx-2">
+          Download (PNG)
+        </v-btn>
       </v-window-item>
     </v-window>
   </v-sheet>
@@ -63,6 +71,8 @@
   import { ref, watch } from 'vue'
   import { Art, useApi } from '@/arkwaifu-api'
   import { useI18n } from 'vue-i18n'
+  import { saveAs } from 'file-saver'
+  import { extension } from 'mime-types'
 
   const props = defineProps<{
     id: string,
@@ -75,6 +85,28 @@
   const { t } = useI18n()
 
   watch(() => props.id, async val => art.value = await api.fetchArtByID(val), { immediate: true })
+
+  function download(id: string, variation: string, format: string) {
+    const name = `${id}${variation != 'origin' ? `.${variation}` : ''}.${extension(format)}`
+    const url = api.getArtContentURL(id, variation)
+    if (format == 'image/webp') {
+      saveAs(url, name)
+      return
+    }
+    const imgElement: HTMLImageElement = document.createElement('img')
+    imgElement.crossOrigin = 'anonymous'
+    imgElement.onload = () => {
+      const canvasElement: HTMLCanvasElement = document.createElement('canvas')
+      canvasElement.width = imgElement.naturalWidth
+      canvasElement.height = imgElement.naturalHeight
+      const ctx = canvasElement.getContext('2d')
+      ctx.drawImage(imgElement, 0, 0)
+      canvasElement.toBlob((blob) => {
+        saveAs(blob, name)
+      }, format, 0.95)
+    }
+    imgElement.src = url
+  }
 </script>
 
 <style scoped>
