@@ -43,7 +43,7 @@
     <v-window v-model="tab" style="min-width: 100%; aspect-ratio: 1/1">
       <v-window-item v-for="(variant, i) in art.variants" :key="variant.variation" :value="i">
         <v-sheet>
-          <img :id="i" :src="api.getArtContentURL(art.id, variant.variation)" alt=""
+          <img :id="`${i}`" :src="api.getArtContentURL(art.id, variant.variation)" alt=""
                style="max-width: 100%;" />
           <p class="text-caption">{{ art.category }}/{{ art.id }}</p>
         </v-sheet>
@@ -99,10 +99,10 @@
       const canvasElement: HTMLCanvasElement = document.createElement('canvas')
       canvasElement.width = imgElement.naturalWidth
       canvasElement.height = imgElement.naturalHeight
-      const ctx = canvasElement.getContext('2d')
+      const ctx = canvasElement.getContext('2d')!!
       ctx.drawImage(imgElement, 0, 0)
       canvasElement.toBlob((blob) => {
-        saveAs(blob, name)
+        saveAs(blob!!, name)
       }, format, 0.95)
     }
     imgElement.src = url
