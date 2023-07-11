@@ -46,7 +46,7 @@
         <v-list>
           <v-list-item
             v-for="locale in Object.keys(Locale)"
-            @click="$i18n.locale = Locale[locale as keyof typeof Locale]"
+            @click="i18n.locale.value = Locale[locale as keyof typeof Locale]"
             prepend-icon="mdi-translate"
           >
             {{ (new Intl.DisplayNames([locale], { type: 'language' })).of(locale) }}
@@ -76,8 +76,8 @@
   import { useDisplay } from 'vuetify'
 
   const api = useApi()
-  const i18n = useI18n()
-  const { t } = i18n
+  const i18n = useI18n({ useScope: 'global' })
+  const { t } = useI18n()
 
   const drawerOpen = ref<boolean | null>(null)
 
