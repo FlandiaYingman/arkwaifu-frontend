@@ -2,7 +2,7 @@
   <v-navigation-drawer
     :model-value="modelValue"
     @update:model-value="$emit('update:modelValue', $event)"
-    width="400"
+    :width="mobile ? 320 : 400"
   >
     <PhantomLogo />
 
@@ -81,11 +81,14 @@
 <script setup lang="ts">
   import PhantomLogo from './PhantomLogo.vue'
   import { useI18n } from 'vue-i18n'
+  import { useDisplay } from 'vuetify'
 
   defineProps(['modelValue'])
   defineEmits(['update:modelValue'])
 
   const { t } = useI18n()
+
+  const { mobile } = useDisplay()
 </script>
 
 <style>
