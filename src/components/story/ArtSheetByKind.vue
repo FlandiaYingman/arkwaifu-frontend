@@ -5,7 +5,7 @@
       {{ category }}
     </p>
     <v-row class="mx-1 my-2">
-      <v-col v-for="art in arts" class="v-col-2">
+      <v-col v-for="art in arts" cols="6" sm="4" lg="3" xl="2">
         <art-card :art="art" />
       </v-col>
     </v-row>

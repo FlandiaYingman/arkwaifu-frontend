@@ -3,7 +3,7 @@
     <template #title># {{ group.name }}</template>
     <template #subtitle>
       {{ group.type }}<br />
-      {{ group.id }}
+      <span class="d-none d-sm-flex">{{ group.id }}</span>
     </template>
   </v-card>
 </template>

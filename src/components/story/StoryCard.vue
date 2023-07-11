@@ -3,7 +3,7 @@
     <template #title>{{ story.name }}</template>
     <template #subtitle>
       {{ story.code }} {{ story.tagText }}<br />
-      {{ story.id }}
+      <span class="d-none d-sm-flex">{{ story.id }}</span>
     </template>
   </v-card>
 </template>
