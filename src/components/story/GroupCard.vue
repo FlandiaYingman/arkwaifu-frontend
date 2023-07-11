@@ -1,6 +1,8 @@
 <template>
   <v-card :to="{ name: 'Group', params: { id: group.id } }" :variant="focused ? 'tonal' : 'elevated'">
-    <template #title># {{ group.name }}</template>
+    <template #title>
+      <span style="white-space: normal"># {{ group.name }}</span>
+    </template>
     <template #subtitle>
       {{ group.type }}<br />
       <span class="d-none d-sm-flex">{{ group.id }}</span>
