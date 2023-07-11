@@ -2,7 +2,8 @@
   <v-navigation-drawer
     :model-value="modelValue"
     @update:model-value="$emit('update:modelValue', $event)"
-    width="360">
+    width="400"
+  >
     <PhantomLogo />
 
     <v-list nav>
@@ -86,6 +87,12 @@
 
   const { t } = useI18n()
 </script>
+
+<style>
+  #navigation-drawer {
+
+  }
+</style>
 
 <i18n locale="en">
 title: 'Navigation'
