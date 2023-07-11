@@ -65,6 +65,9 @@
       </v-window-item>
     </v-window>
   </v-container>
+  <v-sheet v-else class="h-screen d-flex justify-center align-center">
+    <v-progress-circular indeterminate></v-progress-circular>
+  </v-sheet>
 </template>
 
 <script setup lang="ts">

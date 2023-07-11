@@ -3,6 +3,9 @@
     <group-sheet :group="group" :focus="group" />
     <arts-sheet :arts="artsOfGroup"></arts-sheet>
   </v-sheet>
+  <v-sheet v-else class="h-screen d-flex justify-center align-center">
+    <v-progress-circular indeterminate></v-progress-circular>
+  </v-sheet>
 </template>
 
 <script setup lang="ts">

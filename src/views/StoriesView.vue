@@ -1,5 +1,5 @@
 <template xmlns="http://www.w3.org/1999/html">
-  <div class="my-8">
+  <v-sheet v-if="groups.length > 0" class="my-8">
     <group-sheet v-for="group in groupsView" :key="group.id" :group="group" />
     <v-layout-item model-value position="bottom" class="d-flex">
       <v-btn @click="ascend = !ascend"
@@ -10,7 +10,10 @@
              class="ma-12 mt-auto ml-auto"
       />
     </v-layout-item>
-  </div>
+  </v-sheet>
+  <v-sheet v-else class="h-screen d-flex justify-center align-center">
+    <v-progress-circular indeterminate></v-progress-circular>
+  </v-sheet>
 </template>
 
 <script lang="ts" setup>
