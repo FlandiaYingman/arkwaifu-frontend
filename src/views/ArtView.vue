@@ -1,5 +1,5 @@
 <template xmlns="http://www.w3.org/1999/html">
-  <v-sheet v-if="art" class="my-8">
+  <v-container v-if="art" class="my-8">
     <p class="text-h4">{{ art.category }}/{{ art.id }}</p>
     <i18n-t keypath="body-1" tag="p" class="text-body-1">
       <template #bold_category>
@@ -64,7 +64,7 @@
         </v-btn>
       </v-window-item>
     </v-window>
-  </v-sheet>
+  </v-container>
 </template>
 
 <script setup lang="ts">
