@@ -91,12 +91,6 @@
   const { mobile } = useDisplay()
 </script>
 
-<style>
-  #navigation-drawer {
-
-  }
-</style>
-
 <i18n locale="en">
 title: 'Navigation'
 homeTitle: 'Home'
