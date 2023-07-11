@@ -24,7 +24,7 @@
     </v-app-bar>
 
     <v-main>
-      <div class="ma-auto" style="max-width: 1440px">
+      <div class="ma-auto px-2 px-lg-8">
         <router-view />
       </div>
     </v-main>
