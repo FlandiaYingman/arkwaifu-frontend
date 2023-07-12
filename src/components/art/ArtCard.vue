@@ -1,19 +1,15 @@
 <template>
   <v-lazy :options="{threshold: 0.0}">
     <v-sheet>
-      <v-responsive :aspect-ratio="ratio">
-        <v-card :to="{ name: 'Art', params: { id: art.id } }">
-          <v-img @load="loaded = true" :src="url" class="transparent-background">
-            <template #placeholder>
-              <v-responsive :aspect-ratio="ratio">
-                <div class="d-flex fill-height align-center justify-center">
-                  <v-progress-circular indeterminate></v-progress-circular>
-                </div>
-              </v-responsive>
-            </template>
-          </v-img>
-        </v-card>
-      </v-responsive>
+      <v-card :to="{ name: 'Art', params: { id: art.id } }">
+        <v-img @load="loaded = true" :src="url" :aspect-ratio="ratio" class="transparent-background">
+          <template #placeholder>
+            <div class="d-flex fill-height align-center justify-center">
+              <v-progress-circular indeterminate></v-progress-circular>
+            </div>
+          </template>
+        </v-img>
+      </v-card>
       <p class="text-caption">{{ art.category }}/{{ art.id }}</p>
     </v-sheet>
   </v-lazy>
@@ -30,25 +26,10 @@
 
   const loaded = ref(false)
   const ratio = computed(() => {
-    // TODO: Get ratio from variant object.
-    if (loaded.value) {
-      // If loaded, we use the actual ratio.
-      return undefined
-    }
-    if (props.art.category != 'character') {
-      return 16 / 9
-    } else {
-      return 1
-    }
+    const thumbnail = props.art.variants.find(v => v.variation == 'thumbnail')!!
+    return thumbnail.contentWidth / thumbnail.contentHeight
   })
 </script>
-
-<style>
-  /* Use placeholder's size for the v-img element on loading. */
-  .v-img__placeholder {
-    position: static;
-  }
-</style>
 
 <style scoped>
   /* Add chessboard background for images with alpha channel. */
