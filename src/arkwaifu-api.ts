@@ -145,6 +145,11 @@ export const useApi = defineStore('api', () => {
     return await resp.json()
   }
 
+  async function fetchArtsExceptForStoryArts(): Promise<Art[]> {
+    const resp = await fetch(`${BASE_URL}/arts?server=${server}&except-for-story-arts=true`)
+    return await resp.json()
+  }
+
   async function fetchArtByID(id: string): Promise<Art> {
     id = encodeURIComponent(id)
     let resp = await fetch(`${BASE_URL}/arts/${id}`)
@@ -163,6 +168,7 @@ export const useApi = defineStore('api', () => {
     fetchArts,
     fetchArtsOfStoryGroup,
     fetchArtsOfStory,
+    fetchArtsExceptForStoryArts,
     fetchArtByID,
 
     getArtContentURL,
