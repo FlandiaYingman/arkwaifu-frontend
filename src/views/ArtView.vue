@@ -71,7 +71,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, watch } from 'vue'
+  import { ref, watchEffect } from 'vue'
   import { Art, useApi } from '@/arkwaifu-api'
   import { useI18n } from 'vue-i18n'
   import { saveAs } from 'file-saver'
@@ -87,7 +87,7 @@
 
   const { t } = useI18n()
 
-  watch(() => props.id, async val => art.value = await api.fetchArtByID(val), { immediate: true })
+  watchEffect(async () => art.value = await api.fetchArtByID(props.id))
 
   function download(id: string, variation: string, format: string) {
     const name = `${id}${variation != 'origin' ? `.${variation}` : ''}.${extension(format)}`
