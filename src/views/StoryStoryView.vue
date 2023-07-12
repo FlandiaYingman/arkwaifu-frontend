@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, watch, watchEffect } from 'vue'
+  import { ref, watchEffect } from 'vue'
   import { Art, Story, StoryGroup, useApi } from '@/arkwaifu-api'
   import GroupSheet from '@/components/story/GroupSheet.vue'
   import ArtsSheet from '@/components/story/ArtsSheet.vue'
@@ -24,11 +24,9 @@
   const group = ref<StoryGroup>()
   const artsOfStory = ref<Art[]>()
 
-  watch(() => props.id, async (value) => {
-    story.value = await api.fetchStoryByID(value)
-    group.value = await api.fetchStoryGroupByID(story.value!!.groupID)
-  }, { immediate: true })
   watchEffect(async () => {
-    artsOfStory.value = await api.fetchArtsOfStory(props.id)
+    story.value = await api.fetchStoryByID(props.id)
+    group.value = await api.fetchStoryGroupByID(story.value!!.groupID)
   })
+  watchEffect(async () => artsOfStory.value = await api.fetchArtsOfStory(props.id))
 </script>
