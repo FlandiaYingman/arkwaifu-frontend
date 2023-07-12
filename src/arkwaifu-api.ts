@@ -135,6 +135,16 @@ export const useApi = defineStore('api', () => {
     return await resp.json()
   }
 
+  async function fetchArtsOfStoryGroup(groupID: string): Promise<Art[]> {
+    const resp = await fetch(`${BASE_URL}/arts?server=${server}&group=${groupID}`)
+    return await resp.json()
+  }
+
+  async function fetchArtsOfStory(storyID: string): Promise<Art[]> {
+    const resp = await fetch(`${BASE_URL}/arts?server=${server}&story=${storyID}`)
+    return await resp.json()
+  }
+
   async function fetchArtByID(id: string): Promise<Art> {
     id = encodeURIComponent(id)
     let resp = await fetch(`${BASE_URL}/arts/${id}`)
@@ -150,7 +160,10 @@ export const useApi = defineStore('api', () => {
     fetchStoryByID,
     fetchStoryArts,
 
-    fetchArts, fetchArtByID,
+    fetchArts,
+    fetchArtsOfStoryGroup,
+    fetchArtsOfStory,
+    fetchArtByID,
 
     getArtContentURL,
   }
