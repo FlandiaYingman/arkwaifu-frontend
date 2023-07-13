@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed, ref, watch } from 'vue'
+  import { computed, ref, watchEffect } from 'vue'
   import { StoryGroup, useApi } from '@/arkwaifu-api'
   import GroupSheet from '@/components/story/GroupSheet.vue'
 
@@ -34,8 +34,8 @@
 
   const groupsView = computed(() => ascend.value ? groups.value : reversedGroups.value)
 
-  watch(() => props.type, async (value) => {
+  watchEffect(async () => {
     groups.value = []
-    groups.value = await api.fetchStoryGroupsByType(value)
-  }, { immediate: true })
+    groups.value = await api.fetchStoryGroupsByType(props.type)
+  })
 </script>
