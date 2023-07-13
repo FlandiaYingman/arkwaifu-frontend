@@ -35,6 +35,7 @@
   const groupsView = computed(() => ascend.value ? groups.value : reversedGroups.value)
 
   watch(() => props.type, async (value) => {
+    groups.value = []
     groups.value = await api.fetchStoryGroupsByType(value)
   }, { immediate: true })
 </script>
