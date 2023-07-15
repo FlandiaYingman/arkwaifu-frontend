@@ -35,35 +35,35 @@
         <a href="https://github.com/xinntao/Real-ESRGAN">{{ t('variants_real_esrgan') }}</a>
       </template>
     </i18n-t>
-    <v-tabs v-model="tab">
-      <v-tab v-for="(variant, i) in art.variants" :key="variant.variation" :value="i">
-        {{ variant.variation }}
-      </v-tab>
-    </v-tabs>
-    <v-window v-model="tab" style="min-width: 100%; aspect-ratio: 1/1">
-      <v-window-item v-for="(variant, i) in art.variants" :key="variant.variation" :value="i">
-        <v-sheet>
-          <img :id="`${i}`" :src="api.getArtContentURL(art.id, variant.variation)" alt=""
-               style="max-width: 100%;" />
-          <p class="text-caption">{{ art.category }}/{{ art.id }}</p>
-        </v-sheet>
-        <v-btn @click="download(art.id, variant.variation, 'image/webp')"
-               prepend-icon="mdi-download"
-               class="mx-2">
-          Download (WebP)
-        </v-btn>
-        <v-btn @click="download(art.id, variant.variation, 'image/jpeg')"
-               prepend-icon="mdi-download"
-               class="mx-2">
-          Download (JPEG)
-        </v-btn>
-        <v-btn @click="download(art.id, variant.variation, 'image/png')"
-               prepend-icon="mdi-download"
-               class="mx-2">
-          Download (PNG)
-        </v-btn>
-      </v-window-item>
-    </v-window>
+    <v-expansion-panels multiple model-value="origin">
+      <v-expansion-panel v-for="variant in art.variants" :value="variant.variation">
+        <v-expansion-panel-title class="text-uppercase">
+          {{ variant.variation }}
+        </v-expansion-panel-title>
+        <v-expansion-panel-text>
+          <v-sheet>
+            <img :src="api.getArtContentURL(art.id, variant.variation)" alt=""
+                 style="max-width: 100%;" />
+            <p class="text-caption">{{ art.category }}/{{ art.id }}</p>
+          </v-sheet>
+          <v-btn @click="download(art.id, variant.variation, 'image/webp')"
+                 prepend-icon="mdi-download"
+                 class="mx-2">
+            Download (WebP)
+          </v-btn>
+          <v-btn @click="download(art.id, variant.variation, 'image/jpeg')"
+                 prepend-icon="mdi-download"
+                 class="mx-2">
+            Download (JPEG)
+          </v-btn>
+          <v-btn @click="download(art.id, variant.variation, 'image/png')"
+                 prepend-icon="mdi-download"
+                 class="mx-2">
+            Download (PNG)
+          </v-btn>
+        </v-expansion-panel-text>
+      </v-expansion-panel>
+    </v-expansion-panels>
   </v-container>
   <v-sheet v-else class="h-screen d-flex justify-center align-center">
     <v-progress-circular indeterminate></v-progress-circular>
