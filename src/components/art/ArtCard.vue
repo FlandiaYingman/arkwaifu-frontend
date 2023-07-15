@@ -1,7 +1,7 @@
 <template>
   <v-lazy :options="{threshold: 0.0}">
     <v-sheet>
-      <v-card :to="{ name: 'Art', params: { id: art.id } }">
+      <v-card @click="$emit('loupe')">
         <v-img @load="loaded = true" :src="url" :aspect-ratio="ratio" class="transparent-background">
           <template #placeholder>
             <div class="d-flex fill-height align-center justify-center">
@@ -10,7 +10,12 @@
           </template>
         </v-img>
       </v-card>
-      <p class="text-caption">{{ art.category }}/{{ art.id }}</p>
+      <router-link
+        :to="{ name: 'Art', params: { id: art.id } }"
+        class="text-caption text-black text-decoration-underline"
+      >
+        {{ art.category }}/{{ art.id }}
+      </router-link>
     </v-sheet>
   </v-lazy>
 </template>
