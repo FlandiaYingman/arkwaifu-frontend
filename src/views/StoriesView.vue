@@ -1,6 +1,6 @@
 <template xmlns="http://www.w3.org/1999/html">
   <v-sheet v-if="groups.length > 0" class="my-8">
-    <group-sheet v-for="group in groupsView" :key="group.id" :group="group" />
+    <group-panel v-for="group in groupsView" :key="group.id" :group="group" />
     <v-layout-item model-value position="bottom" class="d-flex">
       <v-btn @click="ascend = !ascend"
              :icon="ascend ? 'mdi-sort-calendar-ascending' : 'mdi-sort-calendar-descending'"
@@ -19,7 +19,7 @@
 <script lang="ts" setup>
   import { computed, ref, watchEffect } from 'vue'
   import { StoryGroup, useApi } from '@/arkwaifu-api'
-  import GroupSheet from '@/components/story/GroupSheet.vue'
+  import GroupPanel from '@/components/story/GroupPanel.vue'
 
   const api = useApi()
 
