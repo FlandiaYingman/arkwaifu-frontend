@@ -1,5 +1,5 @@
 <template>
-  <arts-sheet-by-kind v-for="category in Object.values(Category)"
+  <arts-category-panel v-for="category in Object.values(Category)"
                       :key="category"
                       :arts="(uniqueSwitch ? groupedArtsUniq : groupedArts)[category] ?? []"
                       :category="category" />
@@ -17,7 +17,7 @@
 <script setup lang="ts">
   import { computed, ref } from 'vue'
   import _ from 'lodash'
-  import ArtsSheetByKind from '@/components/story/ArtSheetByKind.vue'
+  import ArtsCategoryPanel from '@/components/story/ArtsCategoryPanel.vue'
   import { Art, Category } from '@/arkwaifu-api'
 
 

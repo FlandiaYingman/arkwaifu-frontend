@@ -1,11 +1,11 @@
 <template>
-  <arts-sheet :arts="arts"></arts-sheet>
+  <arts-panel :arts="arts"></arts-panel>
 </template>
 
 <script setup lang="ts">
   import { onMounted, ref } from 'vue'
   import { Art, useApi } from '@/arkwaifu-api'
-  import ArtsSheet from '@/components/story/ArtsSheet.vue'
+  import ArtsPanel from '@/components/story/ArtsPanel.vue'
 
   const api = useApi()
   const arts = ref<Art[]>([])
