@@ -20,18 +20,18 @@
   </v-lazy>
 </template>
 <script lang="ts" setup>
-  import { Art, useApi } from '@/arkwaifu-api'
+  import { Art, useArkwaifu, Variation } from '@/arkwaifu-api'
   import { computed, ref } from 'vue'
 
   const props = defineProps<{
     art: Art,
   }>()
-  const api = useApi()
-  const url = computed(() => api.getArtContentURL(props.art.id, 'thumbnail'))
+  const api = useArkwaifu()
+  const url = computed(() => api.contentSrcOf(props.art.id, Variation.Thumbnail))
 
   const loaded = ref(false)
   const ratio = computed(() => {
-    const thumbnail = props.art.variants.find(v => v.variation == 'thumbnail')!!
+    const thumbnail = props.art.variants.find(v => v.variation == Variation.Thumbnail)!!
     return thumbnail.contentWidth / thumbnail.contentHeight
   })
 </script>

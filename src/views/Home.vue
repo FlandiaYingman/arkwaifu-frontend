@@ -39,7 +39,7 @@
     </p>
     <p class="text-body-1">
       <v-card max-width="864" variant="flat">
-        <v-img :src="api.getArtContentURL('32_i18', 'origin')" />
+        <v-img :src="api.contentSrcOf('32_i18', Variation.Origin)" />
       </v-card>
     </p>
     <p class="text-caption">
@@ -54,7 +54,7 @@
     </p>
     <p class="text-body-1">
       <v-card max-width="864" variant="flat">
-        <v-img :src="api.getArtContentURL('bg_courtyard', 'origin')" />
+        <v-img :src="api.contentSrcOf('bg_courtyard', Variation.Origin)" />
       </v-card>
     </p>
     <p class="text-caption">
@@ -69,7 +69,7 @@
     </p>
     <p class="text-body-1">
       <v-card max-width="864" variant="flat">
-        <v-img :src="api.getArtContentURL('char_250_phantom_1#3$1', 'origin')" />
+        <v-img :src="api.contentSrcOf('char_250_phantom_1#3$1', Variation.Origin)" />
       </v-card>
     </p>
     <p class="text-caption">
@@ -79,10 +79,10 @@
 </template>
 
 <script setup lang="ts">
-  import { useApi } from '@/arkwaifu-api'
+  import { useArkwaifu, Variation } from '@/arkwaifu-api'
   import { useI18n } from 'vue-i18n'
 
-  const api = useApi()
+  const api = useArkwaifu()
   const { t } = useI18n()
 </script>
 

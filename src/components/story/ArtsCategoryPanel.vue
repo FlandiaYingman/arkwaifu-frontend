@@ -18,7 +18,7 @@
         >
           <v-carousel-item v-for="art in arts"
                            :value="art.id"
-                           :src="api.getArtContentURL(art.id, 'origin')"
+                           :src="api.contentSrcOf(art.id, Variation.Origin)"
                            :width="art.variants[0].contentWidth"
                            :height="art.variants[0].contentHeight"
                            eager
@@ -31,11 +31,11 @@
   </v-container>
 </template>
 <script setup lang="ts">
-  import { Art, useApi } from '@/arkwaifu-api'
+  import { Art, useArkwaifu, Variation } from '@/arkwaifu-api'
   import ArtCard from '@/components/art/ArtCard.vue'
   import { ref } from 'vue'
 
-  const api = useApi()
+  const api = useArkwaifu()
 
   defineProps<{
     arts: Art[],
