@@ -1,4 +1,4 @@
-<template xmlns="http://www.w3.org/1999/html">
+<template>
   <v-container v-if="art" class="my-8">
     <p class="text-h4">{{ art.category }}/{{ art.id }}</p>
     <i18n-t keypath="body-1" tag="p" class="text-body-1">

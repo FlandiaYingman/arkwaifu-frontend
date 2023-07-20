@@ -1,4 +1,4 @@
-<template xmlns="http://www.w3.org/1999/html">
+<template>
   <v-sheet v-if="groups.length > 0" class="my-8">
     <group-panel v-for="group in groupsView" :key="group.id" :group="group" />
     <v-layout-item model-value position="bottom" class="d-flex">
