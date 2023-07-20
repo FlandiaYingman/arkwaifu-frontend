@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { readonly } from 'vue'
 
 const BASE_URL = import.meta.env.VITE_ARKWAIFU_API_BASE_URL ?? '/api/v1'
 
@@ -136,7 +135,7 @@ export {
 
 
 export const useArkwaifu = defineStore('arkwaifu-api', () => {
-  const server = readonly(JSON.parse(localStorage.getItem('server') ?? 'null') ?? Server.CN)
+  const server = JSON.parse(localStorage.getItem('server') ?? 'null') ?? Server.CN
 
   function switchServer(newServer: Server) {
     if (newServer != server) {
