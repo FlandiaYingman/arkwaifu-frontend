@@ -22,6 +22,7 @@
         <v-list>
           <v-list-item
             v-for="server in Object.keys(Server)"
+            :key="server"
             @click="api.switchServer(Server[server as keyof typeof Server])"
             prepend-icon="mdi-server"
           >
@@ -46,6 +47,7 @@
         <v-list>
           <v-list-item
             v-for="locale in Object.keys(Locale)"
+            :key="locale"
             @click="i18n.locale.value = Locale[locale as keyof typeof Locale]"
             prepend-icon="mdi-translate"
           >

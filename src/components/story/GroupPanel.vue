@@ -14,7 +14,7 @@
       <v-col v-if="group.stories.length > 1" cols="6" sm="4" lg="3" xl="2">
         <group-card :group="group" :focused="focus?.id == group.id" />
       </v-col>
-      <v-col v-for="story in group.stories" cols="6" sm="4" lg="3" xl="2">
+      <v-col v-for="story in group.stories" :key="story.id" cols="6" sm="4" lg="3" xl="2">
         <story-card :story="story" :focused="focus?.id == story.id" />
       </v-col>
     </v-row>
