@@ -5,7 +5,7 @@
       {{ category }}
     </p>
     <v-row class="mx-1 my-2">
-      <v-col v-for="art in arts" cols="6" sm="4" lg="3" xl="2">
+      <v-col v-for="art in arts" :key="art.id" cols="6" sm="4" lg="3" xl="2">
         <art-card @loupe="openCarousel(art.id)" :art="art" />
       </v-col>
     </v-row>
@@ -16,7 +16,7 @@
                     hide-delimiters
                     show-arrows="hover"
         >
-          <v-carousel-item v-for="art in arts"
+          <v-carousel-item v-for="art in arts" :key="art.id"
                            :value="art.id"
                            :src="api.contentSrcOf(art.id, Variation.Origin)"
                            :width="art.variants[0].contentWidth"

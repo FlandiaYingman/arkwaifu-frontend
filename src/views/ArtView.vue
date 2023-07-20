@@ -36,7 +36,7 @@
       </template>
     </i18n-t>
     <v-expansion-panels multiple model-value="origin">
-      <v-expansion-panel v-for="variant in art.variants" :value="variant.variation">
+      <v-expansion-panel v-for="variant in art.variants" :key="variant.variation" :value="variant.variation">
         <v-expansion-panel-title class="text-uppercase">
           {{ variant.variation }}
         </v-expansion-panel-title>
