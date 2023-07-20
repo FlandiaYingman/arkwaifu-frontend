@@ -1,23 +1,9 @@
 import { defineStore } from 'pinia'
 import { readonly } from 'vue'
 
-const BASE_URL = (() => {
-  if (import.meta.env.DEV) {
-    console.log('App running in development mode, use localhost:7080 as the base url for API')
-    return 'http://localhost:7080/api/v1'
-  } else {
-    return '/api/v1'
-  }
-})()
+const BASE_URL = import.meta.env.VITE_ARKWAIFU_API_BASE_URL ?? '/api/v1'
 
-export enum Category {
-  image = 'image',
-  background = 'background',
-  item = 'item',
-  character = 'character'
-}
-
-export enum Server {
+enum Server {
   CN = 'CN',
   EN = 'EN',
   JP = 'JP',
@@ -26,35 +12,59 @@ export enum Server {
   // TW = 'TW'
 }
 
-export interface Art {
+class Art {
   id: string
   category: Category
   variants: Variant[]
+
+  variant(variation: Variation): Variant {
+    return this.variants.find(el => el.variation === variation)
+  }
 }
 
-export interface Variant {
+enum Category {
+  Image = 'image',
+  Background = 'background',
+  Item = 'item',
+  Character = 'character'
+}
+
+class Variant {
   artID: string
-  variation: string
+  variation: Variation
 
   contentPresent: boolean
-  contentPath: string
   contentWidth: number
   contentHeight: number
 }
 
-export interface StoryGroup {
+enum Variation {
+  Origin = 'origin',
+  RealEsrganX4Plus = 'real-esrgan(realesrgan-x4plus)',
+  RealEsrganX4PlusAnime = 'real-esrgan(realesrgan-x4plus-anime)',
+  Thumbnail = 'thumbnail',
+}
+
+class StoryGroup {
   server: Server
   id: string
   name: string
-  type: string
+  type: StoryGroupType
   stories: Story[]
 }
 
-export interface Story {
+enum StoryGroupType {
+  MainStory = 'main-story',
+  MajorEvent = 'major-event',
+  MinorEvent = 'minor-event',
+  Other = 'other',
+}
+
+class Story {
   server: Server
   id: string
 
-  tag: string
+  tag: StoryTag
   tagText: string
   code: string
   name: string
@@ -66,14 +76,13 @@ export interface Story {
   characterArts: CharacterArt[]
 }
 
-export interface StoryArt {
-  server: Server
-  id: string
-  category: Category
-  storyID: string
+enum StoryTag {
+  Before = 'before',
+  After = 'after',
+  Interlude = 'interlude',
 }
 
-export interface PictureArt extends StoryArt {
+class PictureArt {
   server: Server
   id: string
   category: Category
@@ -83,7 +92,7 @@ export interface PictureArt extends StoryArt {
   subtitle: string
 }
 
-export interface CharacterArt extends StoryArt {
+class CharacterArt {
   server: Server
   id: string
   category: Category
@@ -92,7 +101,41 @@ export interface CharacterArt extends StoryArt {
   names: string[]
 }
 
-export const useApi = defineStore('api', () => {
+class AggregatedPictureArt {
+  server: Server
+  id: string
+  category: Category
+
+  title: string
+  subtitle: string
+}
+
+class AggregatedCharacterArt {
+  server: Server
+  id: string
+  category: Category
+
+  names: string[]
+}
+
+export {
+  Category,
+  Server,
+  Art,
+  Variant,
+  Variation,
+  StoryGroup,
+  StoryGroupType,
+  Story,
+  StoryTag,
+  PictureArt,
+  CharacterArt,
+  AggregatedPictureArt,
+  AggregatedCharacterArt,
+}
+
+
+export const useArkwaifu = defineStore('arkwaifu-api', () => {
   const server = readonly(JSON.parse(localStorage.getItem('server') ?? 'null') ?? Server.CN)
 
   function switchServer(newServer: Server) {
@@ -105,55 +148,59 @@ export const useApi = defineStore('api', () => {
   async function fetchStoryGroupsByType(type: string): Promise<StoryGroup[]> {
     return fetch(`${BASE_URL}/${server}/story-groups?type=${type}`)
       .then(el => el.json())
-      .then(el => (el as StoryGroup[]))
+      .then(el => el as any[])
+      .then(el => el.map(obj => Object.assign(new StoryGroup, obj)))
   }
 
   async function fetchStoryGroupByID(id: string): Promise<StoryGroup> {
     id = encodeURIComponent(id)
     return fetch(`${BASE_URL}/${server}/story-groups/${id}`)
-      .then(resp => resp.json())
+      .then(el => el.json())
+      .then(el => Object.assign(new StoryGroup, el))
   }
 
   async function fetchStoryByID(id: string): Promise<Story> {
     id = encodeURIComponent(id)
     return fetch(`${BASE_URL}/${server}/stories/${id}`)
-      .then(resp => resp.json())
+      .then(el => el.json())
+      .then(el => Object.assign(new Story, el))
   }
 
-  async function fetchStoryArts(): Promise<StoryArt[]> {
-    const resp = await fetch(`${BASE_URL}/${server}/arts`)
-    return await resp.json()
-  }
-
-  function getArtContentURL(id: string, variation: string): string {
-    id = encodeURIComponent(id)
-    return `${BASE_URL}/arts/${id}/variants/${variation}/content`
-  }
 
   async function fetchArts(): Promise<Art[]> {
     const resp = await fetch(`${BASE_URL}/arts`)
-    return await resp.json()
+    const jsonObj = await resp.json<any[]>()
+    return jsonObj.map(el => Object.assign(new Art, el))
   }
 
   async function fetchArtsOfStoryGroup(groupID: string): Promise<Art[]> {
     const resp = await fetch(`${BASE_URL}/arts?server=${server}&group=${groupID}`)
-    return await resp.json()
+    const jsonObj = await resp.json<any[]>()
+    return jsonObj.map(el => Object.assign(new Art, el))
   }
 
   async function fetchArtsOfStory(storyID: string): Promise<Art[]> {
     const resp = await fetch(`${BASE_URL}/arts?server=${server}&story=${storyID}`)
-    return await resp.json()
+    const jsonObj = await resp.json<any[]>()
+    return jsonObj.map(el => Object.assign(new Art, el))
   }
 
   async function fetchArtsExceptForStoryArts(): Promise<Art[]> {
     const resp = await fetch(`${BASE_URL}/arts?server=${server}&except-for-story-arts=true`)
-    return await resp.json()
+    const jsonObj = await resp.json<any[]>()
+    return jsonObj.map(el => Object.assign(new Art, el))
   }
 
   async function fetchArtByID(id: string): Promise<Art> {
     id = encodeURIComponent(id)
-    let resp = await fetch(`${BASE_URL}/arts/${id}`)
-    return await resp.json()
+    const resp = await fetch(`${BASE_URL}/arts/${id}`)
+    const jsonObj = await resp.json<any[]>()
+    return Object.assign(new Art, jsonObj)
+  }
+
+  function contentSrcOf(id: string, variation: Variation): string {
+    id = encodeURIComponent(id)
+    return `${BASE_URL}/arts/${id}/variants/${variation}/content`
   }
 
   return {
@@ -163,7 +210,6 @@ export const useApi = defineStore('api', () => {
     fetchStoryGroupsByType,
     fetchStoryGroupByID,
     fetchStoryByID,
-    fetchStoryArts,
 
     fetchArts,
     fetchArtsOfStoryGroup,
@@ -171,6 +217,6 @@ export const useApi = defineStore('api', () => {
     fetchArtsExceptForStoryArts,
     fetchArtByID,
 
-    getArtContentURL,
+    contentSrcOf,
   }
 })

@@ -70,12 +70,12 @@
 <script setup lang="ts">
   import { ref } from 'vue'
   import NavigationDrawer from '@/components/NavigationDrawer.vue'
-  import { Server, useApi } from '@/arkwaifu-api'
+  import { Server, useArkwaifu } from '@/arkwaifu-api'
   import { useI18n } from 'vue-i18n'
   import { Locale } from '@/locales'
   import { useDisplay } from 'vuetify'
 
-  const api = useApi()
+  const api = useArkwaifu()
   const i18n = useI18n({ useScope: 'global' })
   const { t } = useI18n()
 

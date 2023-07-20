@@ -18,10 +18,10 @@
 
 <script lang="ts" setup>
   import { computed, ref, watchEffect } from 'vue'
-  import { StoryGroup, useApi } from '@/arkwaifu-api'
+  import { StoryGroup, useArkwaifu } from '@/arkwaifu-api'
   import GroupPanel from '@/components/story/GroupPanel.vue'
 
-  const api = useApi()
+  const api = useArkwaifu()
 
   const props = defineProps<{
     type: 'main-story' | 'major-event' | 'minor-event' | 'other',

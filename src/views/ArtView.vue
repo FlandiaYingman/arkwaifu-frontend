@@ -42,21 +42,21 @@
         </v-expansion-panel-title>
         <v-expansion-panel-text>
           <v-sheet>
-            <img :src="api.getArtContentURL(art.id, variant.variation)" alt=""
+            <img :src="api.contentSrcOf(art.id, variant.variation)" alt=""
                  style="max-width: 100%;" />
             <p class="text-caption">{{ art.category }}/{{ art.id }}</p>
           </v-sheet>
-          <v-btn @click="download(art.id, variant.variation, 'image/webp')"
+          <v-btn @click="download(variant, 'image/webp')"
                  prepend-icon="mdi-download"
                  class="mx-2">
             Download (WebP)
           </v-btn>
-          <v-btn @click="download(art.id, variant.variation, 'image/jpeg')"
+          <v-btn @click="download(variant, 'image/jpeg')"
                  prepend-icon="mdi-download"
                  class="mx-2">
             Download (JPEG)
           </v-btn>
-          <v-btn @click="download(art.id, variant.variation, 'image/png')"
+          <v-btn @click="download(variant, 'image/png')"
                  prepend-icon="mdi-download"
                  class="mx-2">
             Download (PNG)
@@ -72,7 +72,7 @@
 
 <script setup lang="ts">
   import { ref, watchEffect } from 'vue'
-  import { Art, useApi } from '@/arkwaifu-api'
+  import { Art, useArkwaifu, Variant, Variation } from '@/arkwaifu-api'
   import { useI18n } from 'vue-i18n'
   import { saveAs } from 'file-saver'
   import { extension } from 'mime-types'
@@ -81,7 +81,7 @@
     id: string,
   }>()
 
-  const api = useApi()
+  const api = useArkwaifu()
   const art = ref<Art>()
   const tab = ref(0)
 
@@ -89,9 +89,9 @@
 
   watchEffect(async () => art.value = await api.fetchArtByID(props.id))
 
-  function download(id: string, variation: string, format: string) {
-    const name = `${id}${variation != 'origin' ? `.${variation}` : ''}.${extension(format)}`
-    const url = api.getArtContentURL(id, variation)
+  function download(variant: Variant, format: string) {
+    const name = `${variant.artID}${variant.variation != Variation.Origin ? `.${variant.variation}` : ''}.${extension(format)}`
+    const url = api.contentSrcOf(variant.artID, variant.variation)
     if (format == 'image/webp') {
       saveAs(url, name)
       return

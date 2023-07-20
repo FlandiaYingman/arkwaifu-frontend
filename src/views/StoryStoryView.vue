@@ -10,11 +10,11 @@
 
 <script setup lang="ts">
   import { ref, watchEffect } from 'vue'
-  import { Art, Story, StoryGroup, useApi } from '@/arkwaifu-api'
+  import { Art, Story, StoryGroup, useArkwaifu } from '@/arkwaifu-api'
   import GroupPanel from '@/components/story/GroupPanel.vue'
   import ArtsPanel from '@/components/story/ArtsPanel.vue'
 
-  const api = useApi()
+  const api = useArkwaifu()
 
   const props = defineProps<{
     id: string
