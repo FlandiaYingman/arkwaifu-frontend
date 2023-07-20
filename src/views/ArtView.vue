@@ -83,7 +83,6 @@
 
   const api = useArkwaifu()
   const art = ref<Art>()
-  const tab = ref(0)
 
   const { t } = useI18n()
 
