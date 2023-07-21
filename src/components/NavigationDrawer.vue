@@ -82,8 +82,12 @@
   import { useI18n } from 'vue-i18n'
   import { useDisplay } from 'vuetify'
 
-  defineProps(['modelValue'])
-  defineEmits(['update:modelValue'])
+  defineProps<{
+    modelValue: boolean
+  }>()
+  defineEmits<{
+    'update:modelValue': [modelValue: boolean]
+  }>()
 
   const { t } = useI18n()
 
