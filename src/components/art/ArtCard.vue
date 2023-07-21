@@ -31,7 +31,7 @@
   const props = defineProps<{
     art: Art,
   }>()
-  const emits = defineEmits<{
+  defineEmits<{
     loupe: []
   }>()
   const api = useArkwaifu()
