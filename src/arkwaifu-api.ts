@@ -165,6 +165,19 @@ export const useArkwaifu = defineStore('arkwaifu-api', () => {
       .then(el => Object.assign(new Story, el))
   }
 
+  async function fetchAggregatedPictureArt(id: string): Promise<AggregatedPictureArt> {
+    const resp = await fetch(`${BASE_URL}/${server}/aggregated-picture-arts/${id}`)
+    const jsonObj = await resp.json<any>()
+    return Object.assign(new AggregatedPictureArt, jsonObj)
+  }
+
+  async function fetchAggregatedCharacterArt(id: string): Promise<AggregatedCharacterArt> {
+    id = encodeURIComponent(id)
+    const resp = await fetch(`${BASE_URL}/${server}/aggregated-character-arts/${id}`)
+    const jsonObj = await resp.json<any>()
+    return Object.assign(new AggregatedCharacterArt, jsonObj)
+  }
+
 
   async function fetchArts(): Promise<Art[]> {
     const resp = await fetch(`${BASE_URL}/arts`)
@@ -209,6 +222,8 @@ export const useArkwaifu = defineStore('arkwaifu-api', () => {
     fetchStoryGroupsByType,
     fetchStoryGroupByID,
     fetchStoryByID,
+    fetchAggregatedPictureArt,
+    fetchAggregatedCharacterArt,
 
     fetchArts,
     fetchArtsOfStoryGroup,

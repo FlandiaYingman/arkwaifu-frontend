@@ -3,8 +3,24 @@
     v-if="art"
     class="my-8"
   >
+    <div
+      v-if="aggregatedStoryArt instanceof AggregatedPictureArt"
+    >
+      <p class="text-h3">
+        {{ aggregatedStoryArt.title }}
+      </p>
+      <p class="text-body-1">
+        {{ aggregatedStoryArt.subtitle }}
+      </p>
+    </div>
     <p class="text-h4">
       {{ art.category }}/{{ art.id }}
+    </p>
+    <p
+      v-if="aggregatedStoryArt instanceof AggregatedCharacterArt"
+      class="text-h6"
+    >
+      {{ aggregatedStoryArt.names.join(t('comma')) }}
     </p>
     <i18n-t
       keypath="body-1"
@@ -140,7 +156,15 @@
 
 <script setup lang="ts">
   import { ref, watchEffect } from 'vue'
-  import { Art, useArkwaifu, Variant, Variation } from '@/arkwaifu-api'
+  import {
+    AggregatedCharacterArt,
+    AggregatedPictureArt,
+    Art,
+    Category,
+    useArkwaifu,
+    Variant,
+    Variation,
+  } from '@/arkwaifu-api'
   import { useI18n } from 'vue-i18n'
   import { saveAs } from 'file-saver'
   import { extension } from 'mime-types'
@@ -151,10 +175,18 @@
 
   const api = useArkwaifu()
   const art = ref<Art>()
+  const aggregatedStoryArt = ref<AggregatedPictureArt | AggregatedCharacterArt>()
 
   const { t } = useI18n()
 
   watchEffect(async () => art.value = await api.fetchArtByID(props.id))
+  watchEffect(async () => {
+    if (art.value.category !== Category.Character) {
+      aggregatedStoryArt.value = await api.fetchAggregatedPictureArt(props.id)
+    } else {
+      aggregatedStoryArt.value = await api.fetchAggregatedCharacterArt(props.id)
+    }
+  })
 
   function download(variant: Variant, format: string) {
     const name = `${variant.artID}${variant.variation != Variation.Origin ? `.${variant.variation}` : ''}.${extension(format)}`
@@ -187,6 +219,7 @@
 </style>
 
 <i18n locale="en" lang="yaml">
+comma: ", "
 category: category
 id: ID
 home_page: Home page
@@ -215,6 +248,7 @@ variants_real_esrgan_body: >
 </i18n>
 
 <i18n locale="zh" lang="yaml">
+comma: "，"
 category: 类别
 id: ID
 home_page: 首页
