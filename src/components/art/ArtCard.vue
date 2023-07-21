@@ -31,6 +31,9 @@
   const props = defineProps<{
     art: Art,
   }>()
+  defineEmits<{
+    loupe: []
+  }>()
   const api = useArkwaifu()
   const url = computed(() => api.contentSrcOf(props.art.id, Variation.Thumbnail))
 
