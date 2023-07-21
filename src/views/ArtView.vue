@@ -14,7 +14,7 @@
       </p>
     </div>
     <p class="text-h4">
-      {{ art.category }}/{{ art.id }}
+      {{ art.id }}
     </p>
     <p
       v-if="aggregatedStoryArt instanceof AggregatedCharacterArt"
@@ -118,7 +118,7 @@
               style="max-width: 100%;"
             >
             <p class="text-caption">
-              {{ art.category }}/{{ art.id }} ({{ variant.contentWidth }}x{{ variant.contentHeight }})
+              {{ art.id }} ({{ variant.contentWidth }}x{{ variant.contentHeight }})
             </p>
           </v-sheet>
           <v-btn

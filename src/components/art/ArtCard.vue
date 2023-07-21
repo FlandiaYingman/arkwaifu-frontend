@@ -17,16 +17,27 @@
       </v-card>
       <router-link
         :to="{ name: 'Art', params: { id: art.id } }"
-        class="text-caption text-black text-decoration-underline"
+        class="text-caption text-black text-decoration-none"
+        style="cursor: pointer"
+        target="_blank"
       >
-        {{ art.category }}/{{ art.id }}
+        <span>{{ art.id }}</span>
+        <span v-if="aggregatedStoryArt instanceof AggregatedPictureArt && aggregatedStoryArt.title != ''">
+          &nbsp;({{ aggregatedStoryArt.title }})
+        </span>
+        <span
+          v-if="aggregatedStoryArt instanceof AggregatedCharacterArt"
+          class="text-decoration-underline"
+        >
+          <br>{{ aggregatedStoryArt.names.join(', ') }}
+        </span>
       </router-link>
     </v-sheet>
   </v-lazy>
 </template>
 <script lang="ts" setup>
-  import { Art, useArkwaifu, Variation } from '@/arkwaifu-api'
-  import { computed, ref } from 'vue'
+  import { AggregatedCharacterArt, AggregatedPictureArt, Art, Category, useArkwaifu, Variation } from '@/arkwaifu-api'
+  import { computed, ref, watchEffect } from 'vue'
 
   const props = defineProps<{
     art: Art,
@@ -35,6 +46,17 @@
     loupe: []
   }>()
   const api = useArkwaifu()
+  // TODO: Get data from parent objects
+  const aggregatedStoryArt = ref<AggregatedPictureArt | AggregatedCharacterArt>()
+  watchEffect(async () => {
+    if (props.art) {
+      if (props.art.category !== Category.Character) {
+        aggregatedStoryArt.value = await api.fetchAggregatedPictureArt(props.art.id)
+      } else {
+        aggregatedStoryArt.value = await api.fetchAggregatedCharacterArt(props.art.id)
+      }
+    }
+  })
   const url = computed(() => api.contentSrcOf(props.art.id, Variation.Thumbnail))
 
   const loaded = ref(false)
