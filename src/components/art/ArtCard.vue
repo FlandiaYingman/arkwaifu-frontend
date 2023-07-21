@@ -2,10 +2,15 @@
   <v-lazy :options="{threshold: 0.0}">
     <v-sheet>
       <v-card @click="$emit('loupe')">
-        <v-img @load="loaded = true" :src="url" :aspect-ratio="ratio" class="transparent-background">
+        <v-img
+          :src="url"
+          :aspect-ratio="ratio"
+          class="transparent-background"
+          @load="loaded = true"
+        >
           <template #placeholder>
             <div class="d-flex fill-height align-center justify-center">
-              <v-progress-circular indeterminate></v-progress-circular>
+              <v-progress-circular indeterminate />
             </div>
           </template>
         </v-img>

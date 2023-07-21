@@ -1,10 +1,16 @@
 <template>
   <v-sheet v-if="group && story">
-    <group-panel :group="group" :focus="story" />
-    <arts-panel :arts="artsOfStory"></arts-panel>
+    <group-panel
+      :group="group"
+      :focus="story"
+    />
+    <arts-panel :arts="artsOfStory" />
   </v-sheet>
-  <v-sheet v-else class="h-screen d-flex justify-center align-center">
-    <v-progress-circular indeterminate></v-progress-circular>
+  <v-sheet
+    v-else
+    class="h-screen d-flex justify-center align-center"
+  >
+    <v-progress-circular indeterminate />
   </v-sheet>
 </template>
 

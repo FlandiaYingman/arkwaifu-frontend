@@ -1,5 +1,5 @@
 <template>
-  <arts-panel :arts="arts"></arts-panel>
+  <arts-panel :arts="arts" />
 </template>
 
 <script setup lang="ts">

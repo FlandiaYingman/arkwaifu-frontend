@@ -1,7 +1,16 @@
 <template>
-  <v-container v-if="art" class="my-8">
-    <p class="text-h4">{{ art.category }}/{{ art.id }}</p>
-    <i18n-t keypath="body-1" tag="p" class="text-body-1">
+  <v-container
+    v-if="art"
+    class="my-8"
+  >
+    <p class="text-h4">
+      {{ art.category }}/{{ art.id }}
+    </p>
+    <i18n-t
+      keypath="body-1"
+      tag="p"
+      class="text-body-1"
+    >
       <template #bold_category>
         <b>{{ t('category') }}</b>
       </template>
@@ -15,58 +24,117 @@
         <b>{{ art.id }}</b>
       </template>
       <template #home>
-        <router-link :to="{ name: 'Home' }">{{ t('home_page') }}</router-link>
+        <router-link :to="{ name: 'Home' }">
+          {{ t('home_page') }}
+        </router-link>
       </template>
     </i18n-t>
-    <i18n-t keypath="body-2" tag="p" class="text-body-1">
+    <i18n-t
+      keypath="body-2"
+      tag="p"
+      class="text-body-1"
+    >
       <template #arkwaifu_2x>
         <a href="https://github.com/FlandiaYingman/arkwaifu-2x">arkwaifu-2x</a>
       </template>
     </i18n-t>
-    <i18n-t keypath="variants" tag="p" class="text-h5" />
-    <i18n-t keypath="variants_body" tag="p" class="text-body-1" />
-    <i18n-t keypath="variants_origin" tag="p" class="text-h6" />
-    <i18n-t keypath="variants_origin_body" tag="p" class="text-body-1" />
-    <i18n-t keypath="variants_thumbnail" tag="p" class="text-h6" />
-    <i18n-t keypath="variants_thumbnail_body" tag="p" class="text-body-1" />
-    <i18n-t keypath="variants_real_esrgan" tag="p" class="text-h6" />
-    <i18n-t keypath="variants_real_esrgan_body" tag="p" class="text-body-1">
+    <i18n-t
+      keypath="variants"
+      tag="p"
+      class="text-h5"
+    />
+    <i18n-t
+      keypath="variants_body"
+      tag="p"
+      class="text-body-1"
+    />
+    <i18n-t
+      keypath="variants_origin"
+      tag="p"
+      class="text-h6"
+    />
+    <i18n-t
+      keypath="variants_origin_body"
+      tag="p"
+      class="text-body-1"
+    />
+    <i18n-t
+      keypath="variants_thumbnail"
+      tag="p"
+      class="text-h6"
+    />
+    <i18n-t
+      keypath="variants_thumbnail_body"
+      tag="p"
+      class="text-body-1"
+    />
+    <i18n-t
+      keypath="variants_real_esrgan"
+      tag="p"
+      class="text-h6"
+    />
+    <i18n-t
+      keypath="variants_real_esrgan_body"
+      tag="p"
+      class="text-body-1"
+    >
       <template #real_esrgan>
         <a href="https://github.com/xinntao/Real-ESRGAN">{{ t('variants_real_esrgan') }}</a>
       </template>
     </i18n-t>
-    <v-expansion-panels multiple model-value="origin">
-      <v-expansion-panel v-for="variant in art.variants" :key="variant.variation" :value="variant.variation">
+    <v-expansion-panels
+      multiple
+      model-value="origin"
+    >
+      <v-expansion-panel
+        v-for="variant in art.variants"
+        :key="variant.variation"
+        :value="variant.variation"
+      >
         <v-expansion-panel-title class="text-uppercase">
           {{ variant.variation }}
         </v-expansion-panel-title>
         <v-expansion-panel-text>
           <v-sheet>
-            <img :src="api.contentSrcOf(art.id, variant.variation)" alt=""
-                 style="max-width: 100%;" />
-            <p class="text-caption">{{ art.category }}/{{ art.id }}</p>
+            <img
+              :src="api.contentSrcOf(art.id, variant.variation)"
+              alt=""
+              style="max-width: 100%;"
+            >
+            <p class="text-caption">
+              {{ art.category }}/{{ art.id }}
+            </p>
           </v-sheet>
-          <v-btn @click="download(variant, 'image/webp')"
-                 prepend-icon="mdi-download"
-                 class="mx-2">
+          <v-btn
+            prepend-icon="mdi-download"
+            class="mx-2"
+            @click="download(variant, 'image/webp')"
+          >
             Download (WebP)
           </v-btn>
-          <v-btn @click="download(variant, 'image/jpeg')"
-                 prepend-icon="mdi-download"
-                 class="mx-2">
+          <v-btn
+            prepend-icon="mdi-download"
+            class="mx-2"
+            @click="download(variant, 'image/jpeg')"
+          >
             Download (JPEG)
           </v-btn>
-          <v-btn @click="download(variant, 'image/png')"
-                 prepend-icon="mdi-download"
-                 class="mx-2">
+          <v-btn
+            prepend-icon="mdi-download"
+            class="mx-2"
+            @click="download(variant, 'image/png')"
+          >
             Download (PNG)
           </v-btn>
         </v-expansion-panel-text>
       </v-expansion-panel>
     </v-expansion-panels>
   </v-container>
-  <v-sheet v-else class="h-screen d-flex justify-center align-center">
-    <v-progress-circular indeterminate></v-progress-circular>
+  <v-sheet
+    v-else
+    class="h-screen d-flex justify-center align-center"
+  >
+    <v-progress-circular indeterminate />
   </v-sheet>
 </template>
 

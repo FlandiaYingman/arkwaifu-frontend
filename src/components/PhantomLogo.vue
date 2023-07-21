@@ -19,7 +19,8 @@
     <div
       class="text-center text-caption primary--text"
       style="user-select: none;"
-    >Arkwaifu - Phantom
+    >
+      Arkwaifu - Phantom
     </div>
   </v-card>
 </template>
