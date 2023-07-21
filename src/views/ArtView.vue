@@ -118,7 +118,7 @@
               style="max-width: 100%;"
             >
             <p class="text-caption">
-              {{ art.category }}/{{ art.id }}
+              {{ art.category }}/{{ art.id }} ({{ variant.contentWidth }}x{{ variant.contentHeight }})
             </p>
           </v-sheet>
           <v-btn
