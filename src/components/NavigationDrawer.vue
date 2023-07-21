@@ -1,8 +1,8 @@
 <template>
   <v-navigation-drawer
     :model-value="modelValue"
-    @update:model-value="$emit('update:modelValue', $event)"
     :width="mobile ? 320 : 400"
+    @update:model-value="$emit('update:modelValue', $event)"
   >
     <PhantomLogo />
 
@@ -16,8 +16,7 @@
         prepend-icon="mdi-home"
         :title="t('homeTitle')"
         :active="$route.name == 'Home'"
-      >
-      </v-list-item>
+      />
       <v-list-group
         color="primary"
       >

@@ -23,8 +23,8 @@
           <v-list-item
             v-for="server in Object.keys(Server)"
             :key="server"
-            @click="api.switchServer(Server[server as keyof typeof Server])"
             prepend-icon="mdi-server"
+            @click="api.switchServer(Server[server as keyof typeof Server])"
           >
             {{ server }}
           </v-list-item>
@@ -48,16 +48,19 @@
           <v-list-item
             v-for="locale in Object.keys(Locale)"
             :key="locale"
-            @click="i18n.locale.value = Locale[locale as keyof typeof Locale]"
             prepend-icon="mdi-translate"
+            @click="i18n.locale.value = Locale[locale as keyof typeof Locale]"
           >
             {{ (new Intl.DisplayNames([locale], { type: 'language' })).of(locale) }}
           </v-list-item>
         </v-list>
       </v-menu>
 
-      <template v-slot:append>
-        <v-btn class="mx-2" icon="mdi-dots-vertical"></v-btn>
+      <template #append>
+        <v-btn
+          class="mx-2"
+          icon="mdi-dots-vertical"
+        />
       </template>
     </v-app-bar>
 

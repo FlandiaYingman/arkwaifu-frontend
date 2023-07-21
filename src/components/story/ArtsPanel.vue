@@ -1,15 +1,22 @@
 <template>
-  <arts-category-panel v-for="category in Object.values(Category)"
-                      :key="category"
-                      :arts="(uniqueSwitch ? groupedArtsUniq : groupedArts)[category] ?? []"
-                      :category="category" />
-  <v-layout-item model-value position="bottom" class="d-flex">
-    <v-btn @click="uniqueSwitch = !uniqueSwitch"
-           :icon="uniqueSwitch ? 'mdi-fingerprint' : 'mdi-fingerprint-off'"
-           size="large"
-           color="primary"
-           elevation="8"
-           class="ma-12 mt-auto ml-auto"
+  <arts-category-panel
+    v-for="category in Object.values(Category)"
+    :key="category"
+    :arts="(uniqueSwitch ? groupedArtsUniq : groupedArts)[category] ?? []"
+    :category="category"
+  />
+  <v-layout-item
+    model-value
+    position="bottom"
+    class="d-flex"
+  >
+    <v-btn
+      :icon="uniqueSwitch ? 'mdi-fingerprint' : 'mdi-fingerprint-off'"
+      size="large"
+      color="primary"
+      elevation="8"
+      class="ma-12 mt-auto ml-auto"
+      @click="uniqueSwitch = !uniqueSwitch"
     />
   </v-layout-item>
 </template>

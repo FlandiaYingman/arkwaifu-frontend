@@ -1,7 +1,13 @@
 <template>
   <v-container>
-    <p :id="group.id" class="text-h5">
-      <a :href="`#${group.id}`" class="text-black text-decoration-none">§</a>
+    <p
+      :id="group.id"
+      class="text-h5"
+    >
+      <a
+        :href="`#${group.id}`"
+        class="text-black text-decoration-none"
+      >§</a>
       {{ group.name }}
     </p>
     <p class="text-caption text-medium-emphasis">
@@ -11,11 +17,30 @@
       {{ group.id }}
     </p>
     <v-row class="mx-1 my-2">
-      <v-col v-if="group.stories.length > 1" cols="6" sm="4" lg="3" xl="2">
-        <group-card :group="group" :focused="focus?.id == group.id" />
+      <v-col
+        v-if="group.stories.length > 1"
+        cols="6"
+        sm="4"
+        lg="3"
+        xl="2"
+      >
+        <group-card
+          :group="group"
+          :focused="focus?.id == group.id"
+        />
       </v-col>
-      <v-col v-for="story in group.stories" :key="story.id" cols="6" sm="4" lg="3" xl="2">
-        <story-card :story="story" :focused="focus?.id == story.id" />
+      <v-col
+        v-for="story in group.stories"
+        :key="story.id"
+        cols="6"
+        sm="4"
+        lg="3"
+        xl="2"
+      >
+        <story-card
+          :story="story"
+          :focused="focus?.id == story.id"
+        />
       </v-col>
     </v-row>
   </v-container>
