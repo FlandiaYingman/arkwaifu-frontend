@@ -12,12 +12,12 @@ enum Server {
 }
 
 class Art {
-  id: string
-  category: Category
-  variants: Variant[]
+  id!: string
+  category!: Category
+  variants!: Variant[]
 
   variant(variation: Variation): Variant {
-    return this.variants.find(el => el.variation === variation)
+    return this.variants.find(el => el.variation === variation)!
   }
 }
 
@@ -29,12 +29,12 @@ enum Category {
 }
 
 class Variant {
-  artID: string
-  variation: Variation
+  artID!: string
+  variation!: Variation
 
-  contentPresent: boolean
-  contentWidth: number
-  contentHeight: number
+  contentPresent!: boolean
+  contentWidth!: number
+  contentHeight!: number
 }
 
 enum Variation {
@@ -45,11 +45,11 @@ enum Variation {
 }
 
 class StoryGroup {
-  server: Server
-  id: string
-  name: string
-  type: StoryGroupType
-  stories: Story[]
+  server!: Server
+  id!: string
+  name!: string
+  type!: StoryGroupType
+  stories!: Story[]
 }
 
 enum StoryGroupType {
@@ -60,19 +60,19 @@ enum StoryGroupType {
 }
 
 class Story {
-  server: Server
-  id: string
+  server!: Server
+  id!: string
 
-  tag: StoryTag
-  tagText: string
-  code: string
-  name: string
-  info: string
+  tag!: StoryTag
+  tagText!: string
+  code!: string
+  name!: string
+  info!: string
 
-  groupID: string
+  groupID!: string
 
-  pictureArts: PictureArt[]
-  characterArts: CharacterArt[]
+  pictureArts!: PictureArt[]
+  characterArts!: CharacterArt[]
 }
 
 enum StoryTag {
@@ -82,39 +82,39 @@ enum StoryTag {
 }
 
 class PictureArt {
-  server: Server
-  id: string
-  category: Category
-  storyID: string
+  server!: Server
+  id!: string
+  category!: Category
+  storyID!: string
 
-  title: string
-  subtitle: string
+  title!: string
+  subtitle!: string
 }
 
 class CharacterArt {
-  server: Server
-  id: string
-  category: Category
-  storyID: string
+  server!: Server
+  id!: string
+  category!: Category
+  storyID!: string
 
-  names: string[]
+  names!: string[]
 }
 
 class AggregatedPictureArt {
-  server: Server
-  id: string
-  category: Category
+  server!: Server
+  id!: string
+  category!: Category
 
-  title: string
-  subtitle: string
+  title!: string
+  subtitle!: string
 }
 
 class AggregatedCharacterArt {
-  server: Server
-  id: string
-  category: Category
+  server!: Server
+  id!: string
+  category!: Category
 
-  names: string[]
+  names!: string[]
 }
 
 export {
@@ -148,66 +148,66 @@ export const useArkwaifu = defineStore('arkwaifu-api', () => {
     return fetch(`${BASE_URL}/${server}/story-groups?type=${type}`)
       .then(el => el.json())
       .then(el => el as any[])
-      .then(el => el.map(obj => Object.assign(new StoryGroup, obj)))
+      .then(el => el.map(obj => Object.assign(new StoryGroup(), obj)))
   }
 
   async function fetchStoryGroupByID(id: string): Promise<StoryGroup> {
     id = encodeURIComponent(id)
     return fetch(`${BASE_URL}/${server}/story-groups/${id}`)
       .then(el => el.json())
-      .then(el => Object.assign(new StoryGroup, el))
+      .then(el => Object.assign(new StoryGroup(), el))
   }
 
   async function fetchStoryByID(id: string): Promise<Story> {
     id = encodeURIComponent(id)
     return fetch(`${BASE_URL}/${server}/stories/${id}`)
       .then(el => el.json())
-      .then(el => Object.assign(new Story, el))
+      .then(el => Object.assign(new Story(), el))
   }
 
   async function fetchAggregatedPictureArt(id: string): Promise<AggregatedPictureArt> {
     const resp = await fetch(`${BASE_URL}/${server}/aggregated-picture-arts/${id}`)
-    const jsonObj = await resp.json<any>()
-    return Object.assign(new AggregatedPictureArt, jsonObj)
+    const jsonObj = await resp.json()
+    return Object.assign(new AggregatedPictureArt(), jsonObj)
   }
 
   async function fetchAggregatedCharacterArt(id: string): Promise<AggregatedCharacterArt> {
     id = encodeURIComponent(id)
     const resp = await fetch(`${BASE_URL}/${server}/aggregated-character-arts/${id}`)
-    const jsonObj = await resp.json<any>()
-    return Object.assign(new AggregatedCharacterArt, jsonObj)
+    const jsonObj = await resp.json()
+    return Object.assign(new AggregatedCharacterArt(), jsonObj)
   }
 
 
   async function fetchArts(): Promise<Art[]> {
     const resp = await fetch(`${BASE_URL}/arts`)
-    const jsonObj = await resp.json<any[]>()
-    return jsonObj.map(el => Object.assign(new Art, el))
+    const jsonObj = await resp.json()
+    return jsonObj.map((el: any) => Object.assign(new Art(), el))
   }
 
   async function fetchArtsOfStoryGroup(groupID: string): Promise<Art[]> {
     const resp = await fetch(`${BASE_URL}/arts?server=${server}&group=${groupID}`)
-    const jsonObj = await resp.json<any[]>()
-    return jsonObj.map(el => Object.assign(new Art, el))
+    const jsonObj = await resp.json()
+    return jsonObj.map((el: any) => Object.assign(new Art(), el))
   }
 
   async function fetchArtsOfStory(storyID: string): Promise<Art[]> {
     const resp = await fetch(`${BASE_URL}/arts?server=${server}&story=${storyID}`)
-    const jsonObj = await resp.json<any[]>()
-    return jsonObj.map(el => Object.assign(new Art, el))
+    const jsonObj = await resp.json()
+    return jsonObj.map((el: any) => Object.assign(new Art(), el))
   }
 
   async function fetchArtsExceptForStoryArts(): Promise<Art[]> {
     const resp = await fetch(`${BASE_URL}/arts?server=${server}&except-for-story-arts=true`)
-    const jsonObj = await resp.json<any[]>()
-    return jsonObj.map(el => Object.assign(new Art, el))
+    const jsonObj = await resp.json()
+    return jsonObj.map((el: any) => Object.assign(new Art(), el))
   }
 
   async function fetchArtByID(id: string): Promise<Art> {
     id = encodeURIComponent(id)
     const resp = await fetch(`${BASE_URL}/arts/${id}`)
-    const jsonObj = await resp.json<any[]>()
-    return Object.assign(new Art, jsonObj)
+    const jsonObj = await resp.json()
+    return Object.assign(new Art(), jsonObj)
   }
 
   function contentSrcOf(id: string, variation: Variation): string {

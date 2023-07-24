@@ -15,7 +15,7 @@
         color="primary"
         prepend-icon="mdi-home"
         :title="t('homeTitle')"
-        :active="$route.name == 'Home'"
+        :active="route.name == 'Home'"
       />
       <v-list-group
         color="primary"
@@ -81,14 +81,16 @@
   import PhantomLogo from './PhantomLogo.vue'
   import { useI18n } from 'vue-i18n'
   import { useDisplay } from 'vuetify'
+  import { useRoute } from 'vue-router'
 
   defineProps<{
-    modelValue: boolean
+    modelValue: boolean | null
   }>()
   defineEmits<{
-    'update:modelValue': [modelValue: boolean]
+    'update:modelValue': [modelValue: boolean | null]
   }>()
 
+  const route = useRoute()
   const { t } = useI18n()
 
   const { mobile } = useDisplay()
