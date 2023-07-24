@@ -181,10 +181,12 @@
 
   watchEffect(async () => art.value = await api.fetchArtByID(props.id))
   watchEffect(async () => {
-    if (art.value.category !== Category.Character) {
-      aggregatedStoryArt.value = await api.fetchAggregatedPictureArt(props.id)
-    } else {
-      aggregatedStoryArt.value = await api.fetchAggregatedCharacterArt(props.id)
+    if (art.value) {
+      if (art.value.category !== Category.Character) {
+        aggregatedStoryArt.value = await api.fetchAggregatedPictureArt(props.id)
+      } else {
+        aggregatedStoryArt.value = await api.fetchAggregatedCharacterArt(props.id)
+      }
     }
   })
 
