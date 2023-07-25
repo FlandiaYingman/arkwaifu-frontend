@@ -2,10 +2,11 @@
   <arts-panel :arts="arts" />
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watchEffect } from 'vue'
-import { Art, useArkwaifu } from '@/arkwaifu-api'
+import { Art } from '@/arkwaifu-api'
 import ArtsPanel from '@/components/story/ArtsPanel.vue'
+import { useArkwaifu } from '@/stores/arkwaifu-api'
 
 const api = useArkwaifu()
 

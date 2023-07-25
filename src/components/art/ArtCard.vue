@@ -28,8 +28,9 @@
   </v-lazy>
 </template>
 <script lang="ts" setup>
-import { AggregatedCharacterArt, AggregatedPictureArt, Art, Category, useArkwaifu, Variation } from '@/arkwaifu-api'
+import { AggregatedCharacterArt, AggregatedPictureArt, Art, Category, Variation } from '@/arkwaifu-api'
 import { computed, ref, watchEffect } from 'vue'
+import { useArkwaifu } from '@/stores/arkwaifu-api'
 
 const props = defineProps<{
   art: Art

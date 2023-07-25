@@ -29,9 +29,10 @@
   </v-container>
 </template>
 <script setup lang="ts">
-import { Art, useArkwaifu, Variation } from '@/arkwaifu-api'
+import { Art, Variation } from '@/arkwaifu-api'
 import ArtCard from '@/components/art/ArtCard.vue'
 import { ref } from 'vue'
+import { useArkwaifu } from '@/stores/arkwaifu-api'
 
 const api = useArkwaifu()
 

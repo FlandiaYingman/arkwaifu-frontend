@@ -1,6 +1,6 @@
 <template>
   <v-sheet v-if="group && story">
-    <group-panel :group="group" :focus="story" />
+    <group-panel :focus="story" :group="group" />
     <arts-panel :arts="artsOfStory" />
   </v-sheet>
   <v-sheet v-else class="h-screen d-flex justify-center align-center">
@@ -8,11 +8,12 @@
   </v-sheet>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watchEffect } from 'vue'
-import { Art, Story, StoryGroup, useArkwaifu } from '@/arkwaifu-api'
+import { Art, Story, StoryGroup } from '@/arkwaifu-api'
 import GroupPanel from '@/components/story/GroupPanel.vue'
 import ArtsPanel from '@/components/story/ArtsPanel.vue'
+import { useArkwaifu } from '@/stores/arkwaifu-api'
 
 const api = useArkwaifu()
 
