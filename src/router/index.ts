@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw, RouterView } from 'vue-router'
+import { createRouter, createWebHistory, type RouteRecordRaw, RouterView } from 'vue-router'
 
 const DefaultView = () => import('@/layouts/default/DefaultView.vue')
 const Home = () => import('@/views/Home.vue')

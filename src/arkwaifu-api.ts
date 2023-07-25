@@ -17,7 +17,7 @@ class Art {
   variants!: Variant[]
 
   variant(variation: Variation): Variant {
-    return this.variants.find(el => el.variation === variation)!
+    return this.variants.find((el) => el.variation === variation)!
   }
 }
 
@@ -25,7 +25,7 @@ enum Category {
   Image = 'image',
   Background = 'background',
   Item = 'item',
-  Character = 'character'
+  Character = 'character',
 }
 
 class Variant {
@@ -133,7 +133,6 @@ export {
   AggregatedCharacterArt,
 }
 
-
 export const useArkwaifu = defineStore('arkwaifu-api', () => {
   const server = JSON.parse(localStorage.getItem('server') ?? 'null') ?? Server.CN
 
@@ -146,23 +145,23 @@ export const useArkwaifu = defineStore('arkwaifu-api', () => {
 
   async function fetchStoryGroupsByType(type: string): Promise<StoryGroup[]> {
     return fetch(`${BASE_URL}/${server}/story-groups?type=${type}`)
-      .then(el => el.json())
-      .then(el => el as any[])
-      .then(el => el.map(obj => Object.assign(new StoryGroup(), obj)))
+      .then((el) => el.json())
+      .then((el) => el as any[])
+      .then((el) => el.map((obj) => Object.assign(new StoryGroup(), obj)))
   }
 
   async function fetchStoryGroupByID(id: string): Promise<StoryGroup> {
     id = encodeURIComponent(id)
     return fetch(`${BASE_URL}/${server}/story-groups/${id}`)
-      .then(el => el.json())
-      .then(el => Object.assign(new StoryGroup(), el))
+      .then((el) => el.json())
+      .then((el) => Object.assign(new StoryGroup(), el))
   }
 
   async function fetchStoryByID(id: string): Promise<Story> {
     id = encodeURIComponent(id)
     return fetch(`${BASE_URL}/${server}/stories/${id}`)
-      .then(el => el.json())
-      .then(el => Object.assign(new Story(), el))
+      .then((el) => el.json())
+      .then((el) => Object.assign(new Story(), el))
   }
 
   async function fetchAggregatedPictureArt(id: string): Promise<AggregatedPictureArt> {
@@ -177,7 +176,6 @@ export const useArkwaifu = defineStore('arkwaifu-api', () => {
     const jsonObj = await resp.json()
     return Object.assign(new AggregatedCharacterArt(), jsonObj)
   }
-
 
   async function fetchArts(): Promise<Art[]> {
     const resp = await fetch(`${BASE_URL}/arts`)

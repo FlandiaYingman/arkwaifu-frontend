@@ -1,4 +1,7 @@
 @use 'vuetify' with (
-  $body-font-family: ('Noto Sans SC', sans-serif),
+  $body-font-family: (
+    'Noto Sans SC',
+    sans-serif,
+  )
 );
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&display=swap');

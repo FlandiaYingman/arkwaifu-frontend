@@ -1,7 +1,8 @@
 import { createI18n } from 'vue-i18n'
 
 export enum Locale {
-  EN = 'en', ZH = 'zh',
+  EN = 'en',
+  ZH = 'zh',
 }
 
 const lang = (() => {
@@ -14,7 +15,10 @@ const lang = (() => {
 })()
 
 const i18n = createI18n({
-  legacy: false, locale: lang, fallbackLocale: 'en', messages: {},
+  legacy: false,
+  locale: lang,
+  fallbackLocale: 'en',
+  messages: {},
 })
 
 export default i18n

@@ -1,11 +1,6 @@
 <template>
-  <v-container
-    v-if="art"
-    class="my-8"
-  >
-    <div
-      v-if="aggregatedStoryArt instanceof AggregatedPictureArt"
-    >
+  <v-container v-if="art" class="my-8">
+    <div v-if="aggregatedStoryArt instanceof AggregatedPictureArt">
       <p class="text-h3">
         {{ aggregatedStoryArt.title }}
       </p>
@@ -16,17 +11,10 @@
     <p class="text-h4">
       {{ art.id }}
     </p>
-    <p
-      v-if="aggregatedStoryArt instanceof AggregatedCharacterArt"
-      class="text-h6"
-    >
+    <p v-if="aggregatedStoryArt instanceof AggregatedCharacterArt" class="text-h6">
       {{ aggregatedStoryArt.names.join(t('comma')) }}
     </p>
-    <i18n-t
-      keypath="body-1"
-      tag="p"
-      class="text-body-1"
-    >
+    <i18n-t keypath="body-1" tag="p" class="text-body-1">
       <template #bold_category>
         <b>{{ t('category') }}</b>
       </template>
@@ -45,183 +33,126 @@
         </router-link>
       </template>
     </i18n-t>
-    <i18n-t
-      keypath="body-2"
-      tag="p"
-      class="text-body-1"
-    >
+    <i18n-t keypath="body-2" tag="p" class="text-body-1">
       <template #arkwaifu_2x>
         <a href="https://github.com/FlandiaYingman/arkwaifu-2x">arkwaifu-2x</a>
       </template>
     </i18n-t>
-    <i18n-t
-      keypath="variants"
-      tag="p"
-      class="text-h5"
-    />
-    <i18n-t
-      keypath="variants_body"
-      tag="p"
-      class="text-body-1"
-    />
-    <i18n-t
-      keypath="variants_origin"
-      tag="p"
-      class="text-h6"
-    />
-    <i18n-t
-      keypath="variants_origin_body"
-      tag="p"
-      class="text-body-1"
-    />
-    <i18n-t
-      keypath="variants_thumbnail"
-      tag="p"
-      class="text-h6"
-    />
-    <i18n-t
-      keypath="variants_thumbnail_body"
-      tag="p"
-      class="text-body-1"
-    />
-    <i18n-t
-      keypath="variants_real_esrgan"
-      tag="p"
-      class="text-h6"
-    />
-    <i18n-t
-      keypath="variants_real_esrgan_body"
-      tag="p"
-      class="text-body-1"
-    >
+    <i18n-t keypath="variants" tag="p" class="text-h5" />
+    <i18n-t keypath="variants_body" tag="p" class="text-body-1" />
+    <i18n-t keypath="variants_origin" tag="p" class="text-h6" />
+    <i18n-t keypath="variants_origin_body" tag="p" class="text-body-1" />
+    <i18n-t keypath="variants_thumbnail" tag="p" class="text-h6" />
+    <i18n-t keypath="variants_thumbnail_body" tag="p" class="text-body-1" />
+    <i18n-t keypath="variants_real_esrgan" tag="p" class="text-h6" />
+    <i18n-t keypath="variants_real_esrgan_body" tag="p" class="text-body-1">
       <template #real_esrgan>
         <a href="https://github.com/xinntao/Real-ESRGAN">{{ t('variants_real_esrgan') }}</a>
       </template>
     </i18n-t>
-    <v-expansion-panels
-      multiple
-      model-value="origin"
-    >
-      <v-expansion-panel
-        v-for="variant in art.variants"
-        :key="variant.variation"
-        :value="variant.variation"
-      >
+    <v-expansion-panels multiple model-value="origin">
+      <v-expansion-panel v-for="variant in art.variants" :key="variant.variation" :value="variant.variation">
         <v-expansion-panel-title class="text-uppercase">
           {{ variant.variation }}
         </v-expansion-panel-title>
         <v-expansion-panel-text>
           <v-sheet>
-            <img
-              :src="api.contentSrcOf(art.id, variant.variation)"
-              alt=""
-              style="max-width: 100%;"
-            >
-            <p class="text-caption">
-              {{ art.id }} ({{ variant.contentWidth }}x{{ variant.contentHeight }})
-            </p>
+            <img :src="api.contentSrcOf(art.id, variant.variation)" alt="" style="max-width: 100%" />
+            <p class="text-caption">{{ art.id }} ({{ variant.contentWidth }}x{{ variant.contentHeight }})</p>
           </v-sheet>
-          <v-btn
-            prepend-icon="mdi-download"
-            class="mx-2"
-            @click="download(variant, 'image/webp')"
-          >
+          <v-btn prepend-icon="mdi-download" class="mx-2" @click="download(variant, 'image/webp')">
             Download (WebP)
           </v-btn>
-          <v-btn
-            prepend-icon="mdi-download"
-            class="mx-2"
-            @click="download(variant, 'image/jpeg')"
-          >
+          <v-btn prepend-icon="mdi-download" class="mx-2" @click="download(variant, 'image/jpeg')">
             Download (JPEG)
           </v-btn>
-          <v-btn
-            prepend-icon="mdi-download"
-            class="mx-2"
-            @click="download(variant, 'image/png')"
-          >
+          <v-btn prepend-icon="mdi-download" class="mx-2" @click="download(variant, 'image/png')">
             Download (PNG)
           </v-btn>
         </v-expansion-panel-text>
       </v-expansion-panel>
     </v-expansion-panels>
   </v-container>
-  <v-sheet
-    v-else
-    class="h-screen d-flex justify-center align-center"
-  >
+  <v-sheet v-else class="h-screen d-flex justify-center align-center">
     <v-progress-circular indeterminate />
   </v-sheet>
 </template>
 
 <script setup lang="ts">
-  import { ref, watchEffect } from 'vue'
-  import {
-    AggregatedCharacterArt,
-    AggregatedPictureArt,
-    Art,
-    Category,
-    useArkwaifu,
-    Variant,
-    Variation,
-  } from '@/arkwaifu-api'
-  import { useI18n } from 'vue-i18n'
-  import { saveAs } from 'file-saver'
-  import { extension } from 'mime-types'
+import { ref, watchEffect } from 'vue'
+import {
+  AggregatedCharacterArt,
+  AggregatedPictureArt,
+  Art,
+  Category,
+  useArkwaifu,
+  Variant,
+  Variation,
+} from '@/arkwaifu-api'
+import { useI18n } from 'vue-i18n'
+import { saveAs } from 'file-saver'
+import { extension } from 'mime-types'
 
-  const props = defineProps<{
-    id: string,
-  }>()
+const props = defineProps<{
+  id: string
+}>()
 
-  const api = useArkwaifu()
-  const art = ref<Art>()
-  const aggregatedStoryArt = ref<AggregatedPictureArt | AggregatedCharacterArt>()
+const api = useArkwaifu()
+const art = ref<Art>()
+const aggregatedStoryArt = ref<AggregatedPictureArt | AggregatedCharacterArt>()
 
-  const { t } = useI18n()
+const { t } = useI18n()
 
-  watchEffect(async () => art.value = await api.fetchArtByID(props.id))
-  watchEffect(async () => {
-    if (art.value) {
-      if (art.value.category !== Category.Character) {
-        aggregatedStoryArt.value = await api.fetchAggregatedPictureArt(props.id)
-      } else {
-        aggregatedStoryArt.value = await api.fetchAggregatedCharacterArt(props.id)
-      }
+watchEffect(async () => (art.value = await api.fetchArtByID(props.id)))
+watchEffect(async () => {
+  if (art.value) {
+    if (art.value.category !== Category.Character) {
+      aggregatedStoryArt.value = await api.fetchAggregatedPictureArt(props.id)
+    } else {
+      aggregatedStoryArt.value = await api.fetchAggregatedCharacterArt(props.id)
     }
-  })
-
-  function download(variant: Variant, format: string) {
-    const name = `${variant.artID}${variant.variation != Variation.Origin ? `.${variant.variation}` : ''}.${extension(format)}`
-    const url = api.contentSrcOf(variant.artID, variant.variation)
-    if (format == 'image/webp') {
-      saveAs(url, name)
-      return
-    }
-    const imgElement: HTMLImageElement = document.createElement('img')
-    imgElement.crossOrigin = 'anonymous'
-    imgElement.onload = () => {
-      const canvasElement: HTMLCanvasElement = document.createElement('canvas')
-      canvasElement.width = imgElement.naturalWidth
-      canvasElement.height = imgElement.naturalHeight
-      const ctx = canvasElement.getContext('2d')!!
-      ctx.drawImage(imgElement, 0, 0)
-      canvasElement.toBlob((blob) => {
-        saveAs(blob!!, name)
-      }, format, 0.95)
-    }
-    imgElement.src = url
   }
+})
+
+function download(variant: Variant, format: string) {
+  const name = `${variant.artID}${variant.variation != Variation.Origin ? `.${variant.variation}` : ''}.${extension(
+    format,
+  )}`
+  const url = api.contentSrcOf(variant.artID, variant.variation)
+  if (format == 'image/webp') {
+    saveAs(url, name)
+    return
+  }
+  const imgElement: HTMLImageElement = document.createElement('img')
+  imgElement.crossOrigin = 'anonymous'
+  imgElement.onload = () => {
+    const canvasElement: HTMLCanvasElement = document.createElement('canvas')
+    canvasElement.width = imgElement.naturalWidth
+    canvasElement.height = imgElement.naturalHeight
+    const ctx = canvasElement.getContext('2d')!!
+    ctx.drawImage(imgElement, 0, 0)
+    canvasElement.toBlob(
+      (blob) => {
+        saveAs(blob!!, name)
+      },
+      format,
+      0.95,
+    )
+  }
+  imgElement.src = url
+}
 </script>
 
 <style scoped>
-  p, ul {
-    margin-bottom: 1rem;
-    line-height: 1.8;
-  }
+p,
+ul {
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
 </style>
 
 <i18n locale="en" lang="yaml">
-comma: ", "
+comma: ', '
 category: category
 id: ID
 home_page: Home page
@@ -250,7 +181,7 @@ variants_real_esrgan_body: >
 </i18n>
 
 <i18n locale="zh" lang="yaml">
-comma: "，"
+comma: '，'
 category: 类别
 id: ID
 home_page: 首页
