@@ -80,18 +80,11 @@
 
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
-import {
-  AggregatedCharacterArt,
-  AggregatedPictureArt,
-  Art,
-  Category,
-  useArkwaifu,
-  Variant,
-  Variation,
-} from '@/arkwaifu-api'
+import { AggregatedCharacterArt, AggregatedPictureArt, Art, Category, Variant, Variation } from '@/arkwaifu-api'
 import { useI18n } from 'vue-i18n'
 import { saveAs } from 'file-saver'
 import { extension } from 'mime-types'
+import { useArkwaifu } from '@/stores/arkwaifu-api'
 
 const props = defineProps<{
   id: string

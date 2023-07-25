@@ -79,8 +79,9 @@
 </template>
 
 <script setup lang="ts">
-import { useArkwaifu, Variation } from '@/arkwaifu-api'
+import { Variation } from '@/arkwaifu-api'
 import { useI18n } from 'vue-i18n'
+import { useArkwaifu } from '@/stores/arkwaifu-api'
 
 const api = useArkwaifu()
 const { t } = useI18n()

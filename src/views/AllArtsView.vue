@@ -4,8 +4,9 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { Art, useArkwaifu } from '@/arkwaifu-api'
+import { Art } from '@/arkwaifu-api'
 import ArtsPanel from '@/components/story/ArtsPanel.vue'
+import { useArkwaifu } from '@/stores/arkwaifu-api'
 
 const api = useArkwaifu()
 const arts = ref<Art[]>([])
