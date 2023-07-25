@@ -62,7 +62,7 @@ title: >-
   关于 Arkwaifu……
 p1: >-
   Arkwaifu 提供几乎所有从{arknights}中提取的图片资源。
-  同时，Arkwaifu 也会利用神经网络 Real-ESRGAN 将资源进行超分辨率（4x）。
+  同时，Arkwaifu 也会利用神经网络 Real-.ESRGAN 将资源进行超分辨率（4x）。
 p2: >-
   我是 Flandia Yingman（{flandia_yingman}），Arkwaifu 的站长和目前唯一的开发者。
   如果有任何问题，或者想为 Arkwaifu 贡献，就来{the_repository}创建一个 issue 或者 pull request 吧。

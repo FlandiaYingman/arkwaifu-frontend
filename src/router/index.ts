@@ -1,14 +1,14 @@
 import { createRouter, createWebHistory, type RouteRecordRaw, RouterView } from 'vue-router'
 
 const DefaultView = () => import('@/layouts/default/DefaultView.vue')
-const Home = () => import('@/views/Home.vue')
+const HomeView = () => import('@/views/HomeView.vue')
 const StoriesView = () => import('@/views/StoriesView.vue')
 const StoryGroupView = () => import('@/views/StoryGroupView.vue')
 const StoryStoryView = () => import('@/views/StoryStoryView.vue')
 const ArtView = () => import('@/views/ArtView.vue')
 const NonStoriesView = () => import('@/views/NonStoriesView.vue')
 const AllArtsView = () => import('@/views/AllArtsView.vue')
-const About = () => import('@/views/About.vue')
+const AboutView = () => import('@/views/AboutView.vue')
 
 const routes: Readonly<RouteRecordRaw[]> = [
   {
@@ -19,7 +19,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
       {
         path: '',
         name: 'Home',
-        component: Home,
+        component: HomeView,
       },
       {
         path: 'story',
@@ -79,7 +79,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
       {
         path: 'about',
         name: 'About',
-        component: About,
+        component: AboutView,
       },
       {
         path: 'arts/:id',
