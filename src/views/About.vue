@@ -1,36 +1,18 @@
 <template>
   <v-container>
     <p>
-      <v-img
-        src="@/assets/logo_phantom.png"
-        width="256"
-      />
+      <v-img src="@/assets/logo_phantom.png" width="256" />
     </p>
-    <i18n-t
-      keypath="title"
-      tag="p"
-      class="text-h3"
-    />
-    <i18n-t
-      keypath="p1"
-      tag="p"
-      class="text-body-1"
-    >
+    <i18n-t keypath="title" tag="p" class="text-h3" />
+    <i18n-t keypath="p1" tag="p" class="text-body-1">
       <template #arknights>
         <b>{{ t('arknights') }}</b>
       </template>
     </i18n-t>
     <p>
-      <v-avatar
-        image="@/assets/FlandiaYingman.png"
-        size="192"
-      />
+      <v-avatar image="@/assets/FlandiaYingman.png" size="192" />
     </p>
-    <i18n-t
-      keypath="p2"
-      tag="p"
-      class="text-body-1"
-    >
+    <i18n-t keypath="p2" tag="p" class="text-body-1">
       <template #flandia_yingman>
         <a href="https://github.com/FlandiaYingman">@FlandiaYingman</a>
       </template>
@@ -42,16 +24,17 @@
 </template>
 
 <script setup lang="ts">
-  import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n'
 
-  const { t } = useI18n()
+const { t } = useI18n()
 </script>
 
 <style lang="scss" scoped>
-  p, ul {
-    margin-bottom: 1rem;
-    line-height: 1.8;
-  }
+p,
+ul {
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
 </style>
 
 <i18n locale="en" lang="yaml">

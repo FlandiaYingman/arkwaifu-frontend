@@ -1,20 +1,13 @@
 <template>
   <v-container>
     <p>
-      <v-img
-        src="@/assets/logo_phantom.png"
-        width="256"
-      />
+      <v-img src="@/assets/logo_phantom.png" width="256" />
     </p>
 
     <p class="text-h3">
       {{ t('introduction.title') }}
     </p>
-    <i18n-t
-      keypath="introduction.p1"
-      tag="p"
-      class="text-body-1"
-    >
+    <i18n-t keypath="introduction.p1" tag="p" class="text-body-1">
       <template #arknights>
         <b>{{ t('arknights') }}</b>
       </template>
@@ -26,11 +19,7 @@
     <p class="text-h4">
       {{ t('available_arts.title') }}
     </p>
-    <i18n-t
-      keypath="available_arts.p1"
-      tag="p"
-      class="text-body-1"
-    >
+    <i18n-t keypath="available_arts.p1" tag="p" class="text-body-1">
       <template #images>
         <b>{{ t('images') }}</b>
       </template>
@@ -49,10 +38,7 @@
       {{ t('available_arts.images_p1') }}
     </p>
     <p class="text-body-1">
-      <v-card
-        max-width="864"
-        variant="flat"
-      >
+      <v-card max-width="864" variant="flat">
         <v-img :src="api.contentSrcOf('32_i18', Variation.Origin)" />
       </v-card>
     </p>
@@ -67,10 +53,7 @@
       {{ t('available_arts.backgrounds_p1') }}
     </p>
     <p class="text-body-1">
-      <v-card
-        max-width="864"
-        variant="flat"
-      >
+      <v-card max-width="864" variant="flat">
         <v-img :src="api.contentSrcOf('bg_courtyard', Variation.Origin)" />
       </v-card>
     </p>
@@ -85,10 +68,7 @@
       {{ t('available_arts.characters_p1') }}
     </p>
     <p class="text-body-1">
-      <v-card
-        max-width="864"
-        variant="flat"
-      >
+      <v-card max-width="864" variant="flat">
         <v-img :src="api.contentSrcOf('char_250_phantom_1#3$1', Variation.Origin)" />
       </v-card>
     </p>
@@ -99,18 +79,19 @@
 </template>
 
 <script setup lang="ts">
-  import { useArkwaifu, Variation } from '@/arkwaifu-api'
-  import { useI18n } from 'vue-i18n'
+import { useArkwaifu, Variation } from '@/arkwaifu-api'
+import { useI18n } from 'vue-i18n'
 
-  const api = useArkwaifu()
-  const { t } = useI18n()
+const api = useArkwaifu()
+const { t } = useI18n()
 </script>
 
 <style lang="scss" scoped>
-  p, ul {
-    margin-bottom: 1rem;
-    line-height: 1.8;
-  }
+p,
+ul {
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
 </style>
 
 <i18n locale="en" lang="yaml">

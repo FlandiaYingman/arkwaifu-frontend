@@ -6,18 +6,10 @@
       <v-app-bar-nav-icon @click="drawerOpen = !drawerOpen" />
       <v-toolbar-title>Arkwaifu</v-toolbar-title>
 
-      <v-btn
-        v-if="mdAndUp"
-        id="server-menu-activator"
-        prepend-icon="mdi-server"
-      >
+      <v-btn v-if="mdAndUp" id="server-menu-activator" prepend-icon="mdi-server">
         {{ t('server') }}
       </v-btn>
-      <v-btn
-        v-else
-        id="server-menu-activator"
-        icon="mdi-server"
-      />
+      <v-btn v-else id="server-menu-activator" icon="mdi-server" />
       <v-menu activator="#server-menu-activator">
         <v-list>
           <v-list-item
@@ -31,18 +23,10 @@
         </v-list>
       </v-menu>
 
-      <v-btn
-        v-if="mdAndUp"
-        id="language-menu-activator"
-        prepend-icon="mdi-translate"
-      >
+      <v-btn v-if="mdAndUp" id="language-menu-activator" prepend-icon="mdi-translate">
         {{ t('language') }}
       </v-btn>
-      <v-btn
-        v-else
-        id="language-menu-activator"
-        icon="mdi-translate"
-      />
+      <v-btn v-else id="language-menu-activator" icon="mdi-translate" />
       <v-menu activator="#language-menu-activator">
         <v-list>
           <v-list-item
@@ -51,16 +35,13 @@
             prepend-icon="mdi-translate"
             @click="i18n.locale.value = Locale[locale as keyof typeof Locale]"
           >
-            {{ (new Intl.DisplayNames([locale], { type: 'language' })).of(locale) }}
+            {{ new Intl.DisplayNames([locale], { type: 'language' }).of(locale) }}
           </v-list-item>
         </v-list>
       </v-menu>
 
       <template #append>
-        <v-btn
-          class="mx-2"
-          icon="mdi-dots-vertical"
-        />
+        <v-btn class="mx-2" icon="mdi-dots-vertical" />
       </template>
     </v-app-bar>
 
@@ -73,27 +54,27 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
-  import NavigationDrawer from '@/components/NavigationDrawer.vue'
-  import { Server, useArkwaifu } from '@/arkwaifu-api'
-  import { useI18n } from 'vue-i18n'
-  import { Locale } from '@/locales'
-  import { useDisplay } from 'vuetify'
+import { ref } from 'vue'
+import NavigationDrawer from '@/components/NavigationDrawer.vue'
+import { Server, useArkwaifu } from '@/arkwaifu-api'
+import { useI18n } from 'vue-i18n'
+import { Locale } from '@/locales'
+import { useDisplay } from 'vuetify'
 
-  const api = useArkwaifu()
-  const i18n = useI18n({ useScope: 'global' })
-  const { t } = useI18n()
+const api = useArkwaifu()
+const i18n = useI18n({ useScope: 'global' })
+const { t } = useI18n()
 
-  const drawerOpen = ref<boolean | null>(null)
+const drawerOpen = ref<boolean | null>(null)
 
-  const { mdAndUp } = useDisplay()
+const { mdAndUp } = useDisplay()
 </script>
 
 <style lang="scss">
-  html {
-    /* height of sticky header, magic number measured from AvgView */
-    scroll-padding-top: (64px + 32px + 16px);
-  }
+html {
+  /* height of sticky header, magic number measured from AvgView */
+  scroll-padding-top: (64px + 32px + 16px);
+}
 </style>
 
 <i18n locale="en" lang="yaml">

@@ -11,15 +11,13 @@
         {{ t('title') }}
       </v-list-subheader>
       <v-list-item
-        :to="{ name: 'Home'}"
+        :to="{ name: 'Home' }"
         color="primary"
         prepend-icon="mdi-home"
         :title="t('homeTitle')"
         :active="route.name == 'Home'"
       />
-      <v-list-group
-        color="primary"
-      >
+      <v-list-group color="primary">
         <template #activator="{ props }">
           <v-list-item
             prepend-icon="mdi-television"
@@ -67,33 +65,28 @@
         :subtitle="t('allSubtitle')"
         :title="t('allTitle')"
       />
-      <v-list-item
-        :to="{ name: 'About' }"
-        color="primary"
-        prepend-icon="mdi-information"
-        :title="t('aboutTitle')"
-      />
+      <v-list-item :to="{ name: 'About' }" color="primary" prepend-icon="mdi-information" :title="t('aboutTitle')" />
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script setup lang="ts">
-  import PhantomLogo from './PhantomLogo.vue'
-  import { useI18n } from 'vue-i18n'
-  import { useDisplay } from 'vuetify'
-  import { useRoute } from 'vue-router'
+import PhantomLogo from './PhantomLogo.vue'
+import { useI18n } from 'vue-i18n'
+import { useDisplay } from 'vuetify'
+import { useRoute } from 'vue-router'
 
-  defineProps<{
-    modelValue: boolean | null
-  }>()
-  defineEmits<{
-    'update:modelValue': [modelValue: boolean | null]
-  }>()
+defineProps<{
+  modelValue: boolean | null
+}>()
+defineEmits<{
+  'update:modelValue': [modelValue: boolean | null]
+}>()
 
-  const route = useRoute()
-  const { t } = useI18n()
+const route = useRoute()
+const { t } = useI18n()
 
-  const { mobile } = useDisplay()
+const { mobile } = useDisplay()
 </script>
 
 <i18n locale="en">

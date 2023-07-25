@@ -14,9 +14,5 @@ import i18n from '../locales'
 import type { App } from 'vue'
 
 export function registerPlugins(app: App) {
-  app
-    .use(vuetify)
-    .use(router)
-    .use(pinia)
-    .use(i18n)
+  app.use(vuetify).use(router).use(pinia).use(i18n)
 }
