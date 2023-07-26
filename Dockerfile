@@ -3,14 +3,8 @@
 FROM node:20 AS builder
 WORKDIR /app
 
-COPY ./.yarn ./.yarn
-COPY ./.pnp.cjs ./.pnp.loader.mjs ./.yarnrc.yml ./package.json ./yarn.lock ./
-RUN yarn
-
-COPY ./public/ ./public/
-COPY ./src/ ./src/
-COPY ./.browserslistrc ./.eslintrc.js ./index.html ./tsconfig.json ./tsconfig.node.json ./tsconfig.node.json ./vite.config.ts ./
-RUN yarn build
+COPY . .
+RUN yarn install && yarn build
 
 FROM nginx:alpine AS deploy
 
