@@ -14,7 +14,7 @@ export default defineConfig({
     }),
     vueJsx(),
     vuetify(),
-    i18n(),
+    i18n({}),
   ],
   resolve: {
     alias: {
