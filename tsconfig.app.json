@@ -8,6 +8,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["node"]
+    "types": ["node"],
+    "lib": ["ESNext", "dom"]
   }
 }
