@@ -27,14 +27,14 @@ export const useArkwaifu = defineStore('arkwaifu-api', () => {
   async function fetchStoryGroupByID(id: string): Promise<StoryGroup> {
     id = encodeURIComponent(id)
     const resp = await fetch(`${api}/${server.value}/story-groups/${id}`)
-    const jsonObj: any = resp.json()
+    const jsonObj: any = await resp.json()
     return Object.assign(new StoryGroup(), jsonObj)
   }
 
   async function fetchStoryByID(id: string): Promise<Story> {
     id = encodeURIComponent(id)
     const resp = await fetch(`${api}/${server.value}/stories/${id}`)
-    const jsonObj: any = resp.json()
+    const jsonObj: any = await resp.json()
     return Object.assign(new Story(), jsonObj)
   }
 
