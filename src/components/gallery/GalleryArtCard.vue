@@ -1,12 +1,14 @@
 <template>
-  <v-card :to="{ name: 'Art', params: { id: galleryArt.artID } }">
-    <v-img :aspect-ratio="ratio" :src="url" class="transparent-background" @load="loaded = true">
-      <template #placeholder>
-        <div class="d-flex fill-height align-center justify-center">
-          <v-progress-circular indeterminate />
-        </div>
-      </template>
-    </v-img>
+  <v-card>
+    <v-card :to="{ name: 'Art', params: { id: galleryArt.artID } }" variant="flat">
+      <v-img :aspect-ratio="ratio" :src="url" class="transparent-background" @load="loaded = true">
+        <template #placeholder>
+          <div class="d-flex fill-height align-center justify-center">
+            <v-progress-circular indeterminate />
+          </div>
+        </template>
+      </v-img>
+    </v-card>
     <v-card-item>
       <v-card-title>
         {{ galleryArt.name }}
