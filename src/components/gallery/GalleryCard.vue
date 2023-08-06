@@ -49,4 +49,8 @@ const galleries = ref<Gallery[]>([])
 watchEffect(async () => (galleries.value = await arkwaifuGallery.listGalleries()))
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.v-carousel * {
+  cursor: pointer;
+}
+</style>
