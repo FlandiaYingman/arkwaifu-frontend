@@ -26,12 +26,12 @@
             v-for="art in gallery.arts"
             :key="art.id"
             :value="art.id"
-            :src="arkwaifu.contentSrcOf(art.id, Variation.Origin)"
+            :src="arkwaifu.contentSrcOf(art.artID, Variation.Origin)"
             :width="1280"
             :height="720"
             eager
           >
-            <router-link :to="{ name: 'Art', params: { id: art.id } }" />
+            <router-link :to="{ name: 'Art', params: { id: art.artID } }" />
           </v-carousel-item>
         </v-carousel>
       </v-sheet>

@@ -11,8 +11,8 @@
         v-for="art in gallery.arts"
         :key="art.id"
         :aspect-ratio="16 / 9"
-        :lazy-src="arkwaifu.contentSrcOf(art.id, Variation.Thumbnail)"
-        :src="arkwaifu.contentSrcOf(art.id, Variation.Origin)"
+        :lazy-src="arkwaifu.contentSrcOf(art.artID, Variation.Thumbnail)"
+        :src="arkwaifu.contentSrcOf(art.artID, Variation.Origin)"
       />
     </v-carousel>
 

@@ -124,6 +124,7 @@ class GalleryArt {
   id!: string
   name!: string
   description!: string
+  artID!: string
 }
 
 export {

@@ -1,5 +1,5 @@
 <template>
-  <v-card :to="{ name: 'Art', params: { id: galleryArt.id } }">
+  <v-card :to="{ name: 'Art', params: { id: galleryArt.artID } }">
     <v-img :aspect-ratio="ratio" :src="url" class="transparent-background" @load="loaded = true">
       <template #placeholder>
         <div class="d-flex fill-height align-center justify-center">
@@ -42,9 +42,9 @@ defineEmits<{
 }>()
 
 const api = useArkwaifu()
-const url = computed(() => api.contentSrcOf(props.galleryArt.id, Variation.Thumbnail))
+const url = computed(() => api.contentSrcOf(props.galleryArt.artID, Variation.Thumbnail))
 const art = ref<Art>()
-watchEffect(async () => (art.value = await api.fetchArtByID(props.galleryArt.id)))
+watchEffect(async () => (art.value = await api.fetchArtByID(props.galleryArt.artID)))
 
 const loaded = ref(false)
 const ratio = computed(() => {
