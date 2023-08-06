@@ -113,6 +113,19 @@ class AggregatedCharacterArt {
   names!: string[]
 }
 
+class Gallery {
+  id!: string
+  name!: string
+  description!: string
+  arts!: GalleryArt[]
+}
+
+class GalleryArt {
+  id!: string
+  name!: string
+  description!: string
+}
+
 export {
   Category,
   Server,
@@ -127,4 +140,6 @@ export {
   CharacterArt,
   AggregatedPictureArt,
   AggregatedCharacterArt,
+  Gallery,
+  GalleryArt,
 }

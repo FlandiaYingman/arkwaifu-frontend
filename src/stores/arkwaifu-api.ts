@@ -1,5 +1,15 @@
 import { defineStore } from 'pinia'
-import { AggregatedCharacterArt, AggregatedPictureArt, Art, Server, Story, StoryGroup, Variation } from '@/arkwaifu-api'
+import {
+  AggregatedCharacterArt,
+  AggregatedPictureArt,
+  Art,
+  Gallery,
+  GalleryArt,
+  Server,
+  Story,
+  StoryGroup,
+  Variation,
+} from '@/arkwaifu-api'
 import { type Ref, ref } from 'vue'
 
 export const useArkwaifu = defineStore('arkwaifu-api', () => {
@@ -88,6 +98,7 @@ export const useArkwaifu = defineStore('arkwaifu-api', () => {
   }
 
   return {
+    api,
     server,
     switchServer,
 
@@ -104,5 +115,40 @@ export const useArkwaifu = defineStore('arkwaifu-api', () => {
     fetchArtByID,
 
     contentSrcOf,
+  }
+})
+
+export const useArkwaifuGallery = defineStore('arkwaifu-gallery', () => {
+  const arkwaifu = useArkwaifu()
+
+  async function listGalleries(): Promise<Gallery[]> {
+    const resp = await fetch(`${arkwaifu.api}/${arkwaifu.server}/galleries`)
+    const jsonObj = await resp.json()
+    return jsonObj.map((el: any) => Object.assign(new Gallery(), el))
+  }
+
+  async function getGalleryByID(id: string) {
+    const resp = await fetch(`${arkwaifu.api}/${arkwaifu.server}/galleries/${id}`)
+    const jsonObj = await resp.json()
+    return Object.assign(new Gallery(), jsonObj)
+  }
+
+  async function listGalleryArts(): Promise<Gallery[]> {
+    const resp = await fetch(`${arkwaifu.api}/${arkwaifu.server}/gallery-arts`)
+    const jsonObj = await resp.json()
+    return jsonObj.map((el: any) => Object.assign(new GalleryArt(), el))
+  }
+
+  async function getGalleryArtByID(id: string) {
+    const resp = await fetch(`${arkwaifu.api}/${arkwaifu.server}/gallery-arts/${id}`)
+    const jsonObj = await resp.json()
+    return Object.assign(new GalleryArt(), jsonObj)
+  }
+
+  return {
+    listGalleries,
+    getGalleryByID,
+    listGalleryArts,
+    getGalleryArtByID,
   }
 })

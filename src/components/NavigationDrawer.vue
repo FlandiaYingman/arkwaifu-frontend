@@ -55,8 +55,13 @@
         :to="{ name: 'Non-Stories' }"
         color="primary"
         prepend-icon="mdi-television-off"
-        :subtitle="t('nonStoriesSubtitle')"
-        :title="t('nonStoriesTitle')"
+      />
+      <v-list-item
+        :subtitle="t('galleriesSubtitle')"
+        :title="t('galleriesTitle')"
+        :to="{ name: 'Galleries' }"
+        color="primary"
+        prepend-icon="mdi-panorama-variant-outline"
       />
       <v-list-item
         :to="{ name: 'All' }"
@@ -104,6 +109,8 @@ othersTitle: 'Others'
 othersSubtitle: 'Operator Records, etc.'
 nonStoriesTitle: 'Non-Stories'
 nonStoriesSubtitle: 'Arts that have not appeared in the Stories'
+galleriesTitle: 'Galleries'
+galleriesSubtitle: ''
 allTitle: 'All Arts'
 allSubtitle: 'May take a long time! '
 aboutTitle: 'About'
@@ -124,6 +131,8 @@ othersTitle: '其它'
 othersSubtitle: '干员密录，etc.'
 nonStoriesTitle: '非剧情'
 nonStoriesSubtitle: '剧情中没有出现的资源'
+galleriesTitle: '画廊'
+galleriesSubtitle: ''
 allTitle: '全部'
 allSubtitle: '可能需要加载很长时间！'
 aboutTitle: '关于'
