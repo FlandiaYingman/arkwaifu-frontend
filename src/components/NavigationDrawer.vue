@@ -11,47 +11,49 @@
         {{ t('title') }}
       </v-list-subheader>
       <v-list-item
+        :active="route.name == 'Home'"
+        :title="t('homeTitle')"
         :to="{ name: 'Home' }"
         color="primary"
         prepend-icon="mdi-home"
-        :title="t('homeTitle')"
-        :active="route.name == 'Home'"
       />
       <v-list-group color="primary">
         <template #activator="{ props }">
           <v-list-item
-            prepend-icon="mdi-television"
             :subtitle="t('storiesSubtitle')"
             :title="t('storiesTitle')"
+            prepend-icon="mdi-television"
             v-bind="props"
           />
         </template>
         <v-list-item
-          :to="{ name: 'Main Stories' }"
-          prepend-icon="mdi-cube"
           :subtitle="t('mainStoriesSubtitle')"
           :title="t('mainStoriesTitle')"
+          :to="{ name: 'Main Stories' }"
+          prepend-icon="mdi-cube"
         />
         <v-list-item
-          :to="{ name: 'Major Events' }"
-          prepend-icon="mdi-music-clef-treble"
           :subtitle="t('majorEventsSubtitle')"
           :title="t('majorEventsTitle')"
+          :to="{ name: 'Major Events' }"
+          prepend-icon="mdi-music-clef-treble"
         />
         <v-list-item
-          :to="{ name: 'Minor Events' }"
-          prepend-icon="mdi-music-clef-bass"
           :subtitle="t('minorEventsSubtitle')"
           :title="t('minorEventsTitle')"
+          :to="{ name: 'Minor Events' }"
+          prepend-icon="mdi-music-clef-bass"
         />
         <v-list-item
-          :to="{ name: 'Others' }"
-          prepend-icon="mdi-music-rest-quarter"
           :subtitle="t('othersSubtitle')"
           :title="t('othersTitle')"
+          :to="{ name: 'Others' }"
+          prepend-icon="mdi-music-rest-quarter"
         />
       </v-list-group>
       <v-list-item
+        :subtitle="t('nonStoriesSubtitle')"
+        :title="t('nonStoriesTitle')"
         :to="{ name: 'Non-Stories' }"
         color="primary"
         prepend-icon="mdi-television-off"
@@ -64,18 +66,18 @@
         prepend-icon="mdi-panorama-variant-outline"
       />
       <v-list-item
+        :subtitle="t('allSubtitle')"
+        :title="t('allTitle')"
         :to="{ name: 'All' }"
         color="primary"
         prepend-icon="mdi-all-inclusive"
-        :subtitle="t('allSubtitle')"
-        :title="t('allTitle')"
       />
-      <v-list-item :to="{ name: 'About' }" color="primary" prepend-icon="mdi-information" :title="t('aboutTitle')" />
+      <v-list-item :title="t('aboutTitle')" :to="{ name: 'About' }" color="primary" prepend-icon="mdi-information" />
     </v-list>
   </v-navigation-drawer>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import PhantomLogo from './PhantomLogo.vue'
 import { useI18n } from 'vue-i18n'
 import { useDisplay } from 'vuetify'
@@ -94,7 +96,7 @@ const { t } = useI18n()
 const { mobile } = useDisplay()
 </script>
 
-<i18n locale="en">
+<i18n lang="yaml" locale="en">
 title: 'Navigation'
 homeTitle: 'Home'
 storiesTitle: 'Stories'
@@ -116,7 +118,7 @@ allSubtitle: 'May take a long time! '
 aboutTitle: 'About'
 </i18n>
 
-<i18n locale="zh" lang="yaml">
+<i18n lang="yaml" locale="zh">
 title: '导航'
 homeTitle: '首页'
 storiesTitle: '剧情'
