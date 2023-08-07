@@ -10,7 +10,7 @@
   </v-card>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { StoryGroup } from '@/arkwaifu-api'
 
 defineProps<{
