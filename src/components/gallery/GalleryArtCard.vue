@@ -21,7 +21,7 @@
           @click="$emit('loupe')"
         />
       </v-card-title>
-      <v-card-subtitle>
+      <v-card-subtitle class="monospace">
         {{ galleryArt.id }}
       </v-card-subtitle>
     </v-card-item>

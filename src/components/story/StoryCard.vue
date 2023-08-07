@@ -5,7 +5,7 @@
     </template>
     <template #subtitle>
       {{ story.code }} {{ story.tagText }}<br />
-      <span class="d-none d-sm-flex">{{ story.id }}</span>
+      <span class="monospace d-none d-sm-flex">{{ story.id }}</span>
     </template>
   </v-card>
 </template>

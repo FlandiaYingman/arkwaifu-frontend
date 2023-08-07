@@ -21,7 +21,7 @@
         <a :href="`#${gallery.id}`" class="text-black text-decoration-none">§</a>
         {{ gallery.name }}
       </v-card-title>
-      <v-card-subtitle>
+      <v-card-subtitle class="monospace">
         {{ gallery.id }}
       </v-card-subtitle>
     </v-card-item>

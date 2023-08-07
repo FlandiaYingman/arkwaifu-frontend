@@ -16,7 +16,7 @@
         style="cursor: pointer"
         target="_blank"
       >
-        <span>{{ art.id }}</span>
+        <span class="monospace">{{ art.id }}</span>
         <span v-if="aggregatedStoryArt instanceof AggregatedPictureArt && aggregatedStoryArt.title != ''">
           &nbsp;({{ aggregatedStoryArt.title }})
         </span>

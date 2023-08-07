@@ -5,7 +5,7 @@
     </template>
     <template #subtitle>
       {{ group.type }}<br />
-      <span class="d-none d-sm-flex">{{ group.id }}</span>
+      <span class="monospace d-none d-sm-flex">{{ group.id }}</span>
     </template>
   </v-card>
 </template>
