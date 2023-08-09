@@ -1,4 +1,6 @@
 import { createI18n } from 'vue-i18n'
+import en from '@/locales/messages/en'
+import zh from '@/locales/messages/zh'
 
 export enum Locale {
   EN = 'en',
@@ -18,7 +20,10 @@ const i18n = createI18n({
   legacy: false,
   locale: lang,
   fallbackLocale: 'en',
-  messages: {},
+  messages: {
+    en,
+    zh,
+  },
 })
 
 export default i18n
