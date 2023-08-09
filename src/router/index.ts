@@ -2,14 +2,14 @@ import { createRouter, createWebHistory, type RouteRecordRaw, RouterView } from 
 
 const DefaultView = () => import('@/layouts/default/DefaultView.vue')
 const HomeView = () => import('@/views/HomeView.vue')
-const StoriesView = () => import('@/views/StoriesView.vue')
-const StoryGroupView = () => import('@/views/StoryGroupView.vue')
-const StoryStoryView = () => import('@/views/StoryStoryView.vue')
-const ArtView = () => import('@/views/ArtView.vue')
-const NonStoriesView = () => import('@/views/NonStoriesView.vue')
+const StoriesView = () => import('@/views/story/StoriesView.vue')
+const StoryGroupView = () => import('@/views/story/StoryGroupView.vue')
+const StoryStoryView = () => import('@/views/story/StoryStoryView.vue')
+const ArtView = () => import('@/views/art/ArtView.vue')
+const NonStoriesView = () => import('@/views/story/NonStoriesView.vue')
 const GalleriesView = () => import('@/views/gallery/GalleriesView.vue')
 const GalleryView = () => import('@/views/gallery/GalleryView.vue')
-const AllArtsView = () => import('@/views/AllArtsView.vue')
+const AllArtsView = () => import('@/views/art/AllArtsView.vue')
 const AboutView = () => import('@/views/AboutView.vue')
 
 const routes: Readonly<RouteRecordRaw[]> = [
