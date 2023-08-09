@@ -25,8 +25,14 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { storeToRefs } from 'pinia'
+import { useMetaStore } from '@/stores/meta'
+import { watchEffect } from 'vue'
 
 const { t } = useI18n()
+
+const { appTitle } = storeToRefs(useMetaStore())
+watchEffect(() => (appTitle.value = t('aboutTitle')))
 </script>
 
 <style lang="scss" scoped>

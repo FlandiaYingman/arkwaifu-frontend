@@ -13,11 +13,18 @@ import { useArkwaifuGallery } from '@/stores/arkwaifu-api'
 import { ref, watchEffect } from 'vue'
 import type { Gallery } from '@/arkwaifu-api'
 import GalleryCard from '@/components/gallery/GalleryCard.vue'
+import { storeToRefs } from 'pinia'
+import { useMetaStore } from '@/stores/meta'
+import { useI18n } from 'vue-i18n'
 
 const arkwaifuGallery = useArkwaifuGallery()
 
 const galleries = ref<Gallery[]>([])
 watchEffect(async () => (galleries.value = await arkwaifuGallery.listGalleries()))
+
+const { t } = useI18n()
+const { appTitle } = storeToRefs(useMetaStore())
+watchEffect(() => (appTitle.value = t('galleriesTitle')))
 </script>
 
 <style lang="scss" scoped>

@@ -85,6 +85,8 @@ import { useI18n } from 'vue-i18n'
 import { saveAs } from 'file-saver'
 import { extension } from 'mime-types'
 import { useArkwaifu } from '@/stores/arkwaifu-api'
+import { storeToRefs } from 'pinia'
+import { useMetaStore } from '@/stores/meta'
 
 const props = defineProps<{
   id: string
@@ -134,6 +136,9 @@ function download(variant: Variant, format: string) {
   }
   imgElement.src = url
 }
+
+const { appTitle } = storeToRefs(useMetaStore())
+watchEffect(() => (appTitle.value = art.value?.id ?? ''))
 </script>
 
 <style scoped>

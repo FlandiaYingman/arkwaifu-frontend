@@ -7,7 +7,7 @@
     <p class="text-h3">
       {{ t('introduction.title') }}
     </p>
-    <i18n-t keypath="introduction.p1" tag="p" class="text-body-1">
+    <i18n-t class="text-body-1" keypath="introduction.p1" tag="p">
       <template #arknights>
         <b>{{ t('arknights') }}</b>
       </template>
@@ -19,7 +19,7 @@
     <p class="text-h4">
       {{ t('available_arts.title') }}
     </p>
-    <i18n-t keypath="available_arts.p1" tag="p" class="text-body-1">
+    <i18n-t class="text-body-1" keypath="available_arts.p1" tag="p">
       <template #images>
         <b>{{ t('images') }}</b>
       </template>
@@ -78,13 +78,19 @@
   </v-container>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { Variation } from '@/arkwaifu-api'
 import { useI18n } from 'vue-i18n'
 import { useArkwaifu } from '@/stores/arkwaifu-api'
+import { useMetaStore } from '@/stores/meta'
+import { storeToRefs } from 'pinia'
+import { watchEffect } from 'vue'
 
 const api = useArkwaifu()
 const { t } = useI18n()
+
+const { appTitle } = storeToRefs(useMetaStore())
+watchEffect(() => (appTitle.value = t('homeTitle')))
 </script>
 
 <style lang="scss" scoped>
@@ -95,7 +101,7 @@ ul {
 }
 </style>
 
-<i18n locale="en" lang="yaml">
+<i18n lang="yaml" locale="en">
 arknights: Arknights
 images: images
 backgrounds: backgrounds
@@ -131,7 +137,7 @@ available_arts:
     characters/char_250_phantom_1#3$1, from the story "踏寻往昔之风-交错光影", Phantom, painful of taking his mask off
 </i18n>
 
-<i18n locale="zh" lang="yaml">
+<i18n lang="yaml" locale="zh">
 arknights: 明日方舟
 images: images
 backgrounds: backgrounds

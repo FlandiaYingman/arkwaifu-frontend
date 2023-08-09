@@ -4,7 +4,7 @@
 
     <v-app-bar>
       <v-app-bar-nav-icon @click="drawerOpen = !drawerOpen" />
-      <v-toolbar-title>Arkwaifu</v-toolbar-title>
+      <v-toolbar-title>{{ meta.appTitle }}</v-toolbar-title>
 
       <v-btn v-if="mdAndUp" id="server-menu-activator" prepend-icon="mdi-server">
         {{ t('server') }}
@@ -61,7 +61,9 @@ import { useI18n } from 'vue-i18n'
 import { Locale } from '@/locales'
 import { useDisplay } from 'vuetify'
 import { useArkwaifu } from '@/stores/arkwaifu-api'
+import { useMetaStore } from '@/stores/meta'
 
+const meta = useMetaStore()
 const api = useArkwaifu()
 const i18n = useI18n({ useScope: 'global' })
 const { t } = useI18n()

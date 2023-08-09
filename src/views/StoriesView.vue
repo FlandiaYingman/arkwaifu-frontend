@@ -22,6 +22,9 @@ import { computed, ref, watchEffect } from 'vue'
 import { StoryGroup } from '@/arkwaifu-api'
 import GroupPanel from '@/components/story/GroupPanel.vue'
 import { useArkwaifu } from '@/stores/arkwaifu-api'
+import { storeToRefs } from 'pinia'
+import { useMetaStore } from '@/stores/meta'
+import { useI18n } from 'vue-i18n'
 
 const api = useArkwaifu()
 
@@ -40,4 +43,8 @@ watchEffect(async () => {
   groups.value = []
   groups.value = await api.fetchStoryGroupsByType(props.type)
 })
+
+const { t } = useI18n()
+const { appTitle } = storeToRefs(useMetaStore())
+watchEffect(() => (appTitle.value = t('storiesTitle')))
 </script>

@@ -43,8 +43,10 @@
 import { useArkwaifu, useArkwaifuGallery } from '@/stores/arkwaifu-api'
 import { ref, watchEffect } from 'vue'
 import type { Gallery } from '@/arkwaifu-api'
-import GalleryArtCard from '@/components/gallery/GalleryArtCard.vue'
 import { Variation } from '@/arkwaifu-api'
+import GalleryArtCard from '@/components/gallery/GalleryArtCard.vue'
+import { storeToRefs } from 'pinia'
+import { useMetaStore } from '@/stores/meta'
 
 const props = defineProps<{
   id: string
@@ -62,6 +64,9 @@ function openCarousel(newCarouselValue: string) {
   carouselModel.value = newCarouselValue
   carouselOverlayModel.value = true
 }
+
+const { appTitle } = storeToRefs(useMetaStore())
+watchEffect(() => (appTitle.value = gallery.value?.name ?? ''))
 </script>
 
 <style lang="scss" scoped>
