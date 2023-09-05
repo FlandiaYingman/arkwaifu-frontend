@@ -5,19 +5,20 @@
     :arts="(uniqueSwitch ? groupedArtsUniq : groupedArts)[category] ?? []"
     :category="category"
   />
-  <v-layout-item model-value position="bottom" class="d-flex">
+  <v-layout-item class="text-end" model-value position="bottom" size="88" style="pointer-events: none">
     <v-btn
       :icon="uniqueSwitch ? 'mdi-fingerprint' : 'mdi-fingerprint-off'"
-      size="large"
+      class="ma-12 mt-auto"
       color="primary"
       elevation="8"
-      class="ma-12 mt-auto ml-auto"
+      size="large"
+      style="pointer-events: initial"
       @click="uniqueSwitch = !uniqueSwitch"
     />
   </v-layout-item>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, ref } from 'vue'
 import _ from 'lodash'
 import ArtsCategoryPanel from '@/components/story/ArtsCategoryPanel.vue'

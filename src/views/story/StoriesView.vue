@@ -1,13 +1,14 @@
 <template>
   <v-sheet v-if="groups.length > 0" class="my-8">
     <group-panel v-for="group in groupsView" :key="group.id" :group="group" />
-    <v-layout-item class="d-flex" model-value position="bottom">
+    <v-layout-item class="text-end" model-value position="bottom" size="88" style="pointer-events: none">
       <v-btn
         :icon="ascend ? 'mdi-sort-calendar-ascending' : 'mdi-sort-calendar-descending'"
-        class="ma-12 mt-auto ml-auto"
+        class="ma-12 mt-auto"
         color="primary"
         elevation="8"
         size="large"
+        style="pointer-events: initial"
         @click="ascend = !ascend"
       />
     </v-layout-item>
