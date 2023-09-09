@@ -14,7 +14,7 @@
     <p v-if="aggregatedStoryArt instanceof AggregatedCharacterArt" class="text-h6">
       {{ aggregatedStoryArt.names.join(t('comma')) }}
     </p>
-    <i18n-t keypath="body-1" tag="p" class="text-body-1">
+    <i18n-t class="text-body-1" keypath="body-1" tag="p">
       <template #bold_category>
         <b>{{ t('category') }}</b>
       </template>
@@ -33,24 +33,24 @@
         </router-link>
       </template>
     </i18n-t>
-    <i18n-t keypath="body-2" tag="p" class="text-body-1">
+    <i18n-t class="text-body-1" keypath="body-2" tag="p">
       <template #arkwaifu_2x>
         <a href="https://github.com/FlandiaYingman/arkwaifu-2x">arkwaifu-2x</a>
       </template>
     </i18n-t>
-    <i18n-t keypath="variants" tag="p" class="text-h5" />
-    <i18n-t keypath="variants_body" tag="p" class="text-body-1" />
-    <i18n-t keypath="variants_origin" tag="p" class="text-h6" />
-    <i18n-t keypath="variants_origin_body" tag="p" class="text-body-1" />
-    <i18n-t keypath="variants_thumbnail" tag="p" class="text-h6" />
-    <i18n-t keypath="variants_thumbnail_body" tag="p" class="text-body-1" />
-    <i18n-t keypath="variants_real_esrgan" tag="p" class="text-h6" />
-    <i18n-t keypath="variants_real_esrgan_body" tag="p" class="text-body-1">
+    <i18n-t class="text-h5" keypath="variants" tag="p" />
+    <i18n-t class="text-body-1" keypath="variants_body" tag="p" />
+    <i18n-t class="text-h6" keypath="variants_origin" tag="p" />
+    <i18n-t class="text-body-1" keypath="variants_origin_body" tag="p" />
+    <i18n-t class="text-h6" keypath="variants_thumbnail" tag="p" />
+    <i18n-t class="text-body-1" keypath="variants_thumbnail_body" tag="p" />
+    <i18n-t class="text-h6" keypath="variants_real_esrgan" tag="p" />
+    <i18n-t class="text-body-1" keypath="variants_real_esrgan_body" tag="p">
       <template #real_esrgan>
         <a href="https://github.com/xinntao/Real-ESRGAN">{{ t('variants_real_esrgan') }}</a>
       </template>
     </i18n-t>
-    <v-expansion-panels multiple model-value="origin">
+    <v-expansion-panels model-value="origin" multiple>
       <v-expansion-panel v-for="variant in art.variants" :key="variant.variation" :value="variant.variation">
         <v-expansion-panel-title class="text-uppercase">
           {{ variant.variation }}
@@ -60,13 +60,13 @@
             <img :src="api.contentSrcOf(art.id, variant.variation)" alt="" style="max-width: 100%" />
             <p class="text-caption">{{ art.id }} ({{ variant.contentWidth }}x{{ variant.contentHeight }})</p>
           </v-sheet>
-          <v-btn prepend-icon="mdi-download" class="mx-2" @click="download(variant, 'image/webp')">
+          <v-btn class="mx-2" prepend-icon="mdi-download" @click="download(variant, 'image/webp')">
             Download (WebP)
           </v-btn>
-          <v-btn prepend-icon="mdi-download" class="mx-2" @click="download(variant, 'image/jpeg')">
+          <v-btn class="mx-2" prepend-icon="mdi-download" @click="download(variant, 'image/jpeg')">
             Download (JPEG)
           </v-btn>
-          <v-btn prepend-icon="mdi-download" class="mx-2" @click="download(variant, 'image/png')">
+          <v-btn class="mx-2" prepend-icon="mdi-download" @click="download(variant, 'image/png')">
             Download (PNG)
           </v-btn>
         </v-expansion-panel-text>
@@ -78,12 +78,11 @@
   </v-sheet>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watchEffect } from 'vue'
 import { AggregatedCharacterArt, AggregatedPictureArt, Art, Category, Variant, Variation } from '@/arkwaifu-api'
 import { useI18n } from 'vue-i18n'
 import { saveAs } from 'file-saver'
-import { extension } from 'mime-types'
 import { useArkwaifu } from '@/stores/arkwaifu-api'
 import { storeToRefs } from 'pinia'
 import { useMetaStore } from '@/stores/meta'
@@ -109,10 +108,16 @@ watchEffect(async () => {
   }
 })
 
+function filename(variant: Variant): string {
+  let filename = variant.artID
+  if (variant.variation != Variation.Origin) {
+    filename += `.${variant.variation}`
+  }
+  return filename
+}
+
 function download(variant: Variant, format: string) {
-  const name = `${variant.artID}${variant.variation != Variation.Origin ? `.${variant.variation}` : ''}.${extension(
-    format,
-  )}`
+  const name = filename(variant)
   const url = api.contentSrcOf(variant.artID, variant.variation)
   if (format == 'image/webp') {
     saveAs(url, name)
@@ -149,7 +154,7 @@ ul {
 }
 </style>
 
-<i18n locale="en" lang="yaml">
+<i18n lang="yaml" locale="en">
 comma: ', '
 category: category
 id: ID
@@ -178,7 +183,7 @@ variants_real_esrgan_body: >
   The maximum size for this variant can reach ~8 MiB, and it is compressed in lossless mode.
 </i18n>
 
-<i18n locale="zh" lang="yaml">
+<i18n lang="yaml" locale="zh">
 comma: '，'
 category: 类别
 id: ID
