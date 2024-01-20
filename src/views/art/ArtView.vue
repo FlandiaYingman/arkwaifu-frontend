@@ -72,6 +72,7 @@
         </v-expansion-panel-text>
       </v-expansion-panel>
     </v-expansion-panels>
+    <arts-panel v-if="siblings" :arts="siblings" />
   </v-container>
   <v-sheet v-else class="h-screen d-flex justify-center align-center">
     <v-progress-circular indeterminate />
@@ -86,6 +87,7 @@ import { saveAs } from 'file-saver'
 import { useArkwaifu } from '@/stores/arkwaifu-api'
 import { storeToRefs } from 'pinia'
 import { useMetaStore } from '@/stores/meta'
+import ArtsPanel from '@/components/story/ArtsPanel.vue'
 
 const props = defineProps<{
   id: string
@@ -144,6 +146,20 @@ function download(variant: Variant, format: string) {
 
 const { appTitle } = storeToRefs(useMetaStore())
 watchEffect(() => (appTitle.value = art.value?.id ?? ''))
+
+// Siblings
+const siblings = ref<Art[]>()
+watchEffect(async () => {
+  if (art.value?.category === Category.Character) {
+    siblings.value = await api.fetchSiblingsOfCharacterArt(art.value.id)
+  }
+})
+const aggregatedSiblings = ref<AggregatedCharacterArt[]>()
+watchEffect(async () => {
+  if (siblings.value) {
+    aggregatedSiblings.value = await Promise.all(siblings.value.map((el) => api.fetchAggregatedCharacterArt(el.id)))
+  }
+})
 </script>
 
 <style scoped>

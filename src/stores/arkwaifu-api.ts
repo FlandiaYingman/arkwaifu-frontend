@@ -79,6 +79,13 @@ export const useArkwaifu = defineStore('arkwaifu-api', () => {
     return jsonObj.map((el: any) => Object.assign(new Art(), el))
   }
 
+  async function fetchSiblingsOfCharacterArt(characterID: string): Promise<Art[]> {
+    characterID = encodeURIComponent(characterID)
+    const resp = await fetch(`${api}/arts/${characterID}/siblings`)
+    const jsonObj = await resp.json()
+    return jsonObj.map((el: any) => Object.assign(new Art(), el))
+  }
+
   async function fetchArtsExceptForStoryArts(): Promise<Art[]> {
     const resp = await fetch(`${api}/arts?server=${server.value}&except-for-story-arts=true`)
     const jsonObj = await resp.json()
@@ -111,6 +118,7 @@ export const useArkwaifu = defineStore('arkwaifu-api', () => {
     fetchArts,
     fetchArtsOfStoryGroup,
     fetchArtsOfStory,
+    fetchSiblingsOfCharacterArt,
     fetchArtsExceptForStoryArts,
     fetchArtByID,
 
