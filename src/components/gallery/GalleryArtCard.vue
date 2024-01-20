@@ -25,7 +25,7 @@
         {{ galleryArt.id }}
       </v-card-subtitle>
     </v-card-item>
-    <v-card-text style="white-space: pre-line">
+    <v-card-text v-show="galleryArt.description !== ''" style="white-space: pre-line">
       {{ galleryArt.description }}
     </v-card-text>
   </v-card>
