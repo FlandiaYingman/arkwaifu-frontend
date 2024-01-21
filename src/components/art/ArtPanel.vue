@@ -6,8 +6,27 @@
     </div>
 
     <v-row class="mx-1 my-2">
-      <v-col v-for="(art, i) in artsResult" :key="art.id + i" cols="6" lg="3" sm="4" xl="2">
+      <v-col
+        v-for="(art, i) in doHideArts ? artsResult.slice(0, 8 - 1) : artsResult"
+        :key="art.id + i"
+        cols="6"
+        lg="3"
+        sm="4"
+        xl="2"
+      >
         <art-card :art="art" @loupe="carousel?.openCarousel(i)" />
+      </v-col>
+      <v-col v-if="canHideArts" cols="6" lg="3" sm="4" xl="2">
+        <v-responsive :aspect-ratio="arts[0].category !== 'character' ? 16 / 9 : 1">
+          <div class="h-100 d-flex justify-center align-center">
+            <v-btn
+              :icon="doHideArts ? 'mdi-chevron-double-right' : 'mdi-chevron-double-left'"
+              variant="text"
+              size="x-large"
+              @click="doHideArts = !doHideArts"
+            ></v-btn>
+          </div>
+        </v-responsive>
       </v-col>
     </v-row>
 
@@ -36,6 +55,8 @@ const props = withDefaults(
 
 const artsUnique = computed(() => _.uniqBy(props.arts, (el) => el.id))
 const artsResult = computed(() => (props.unique ? artsUnique.value : props.arts))
+const canHideArts = computed(() => props.arts.length > 8)
+const doHideArts = ref(true)
 
 const carousel = ref<InstanceType<typeof ArtCarousel>>()
 </script>
