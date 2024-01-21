@@ -16,12 +16,15 @@
         style="cursor: pointer"
         target="_blank"
       >
-        <span class="monospace">{{ art.id }}</span>
-        <span v-if="aggregatedStoryArt instanceof AggregatedPictureArt && aggregatedStoryArt.title != ''">
+        <span class="monospace text-decoration-underline">{{ art.id }}</span>
+
+        <span v-if="aggregatedStoryArt instanceof AggregatedPictureArt && aggregatedStoryArt.title !== ''">
           &nbsp;({{ aggregatedStoryArt.title }})
         </span>
-        <span v-if="aggregatedStoryArt instanceof AggregatedCharacterArt" class="text-decoration-underline">
-          <br />{{ aggregatedStoryArt.names.join(', ') }}
+
+        <span v-if="aggregatedStoryArt instanceof AggregatedCharacterArt && aggregatedStoryArt.names.length !== 0">
+          <br />
+          {{ aggregatedStoryArt.names.join(', ') }}
         </span>
       </router-link>
     </v-sheet>
