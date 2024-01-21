@@ -8,54 +8,21 @@
         {{ aggregatedStoryArt.subtitle }}
       </p>
     </div>
-    <p class="text-h4">
-      {{ art.id }}
+
+    <p class="text-h4 monospace">{{ art.category }}/{{ art.id }}</p>
+
+    <p v-if="aggregatedStoryArt instanceof AggregatedCharacterArt" class="text-subtitle-2 text-pre-line">
+      {{ aggregatedStoryArt.names.join(t('\n')) }}
     </p>
-    <p v-if="aggregatedStoryArt instanceof AggregatedCharacterArt" class="text-h6">
-      {{ aggregatedStoryArt.names.join(t('comma')) }}
-    </p>
-    <i18n-t class="text-body-1" keypath="body-1" tag="p">
-      <template #bold_category>
-        <b>{{ t('category') }}</b>
-      </template>
-      <template #category>
-        <b>{{ art.category }}</b>
-      </template>
-      <template #bold_id>
-        <b>{{ t('id') }}</b>
-      </template>
-      <template #id>
-        <b>{{ art.id }}</b>
-      </template>
-      <template #home>
-        <router-link :to="{ name: 'Home' }">
-          {{ t('home_page') }}
-        </router-link>
-      </template>
-    </i18n-t>
-    <i18n-t class="text-body-1" keypath="body-2" tag="p">
-      <template #arkwaifu_2x>
-        <a href="https://github.com/FlandiaYingman/arkwaifu-2x">arkwaifu-2x</a>
-      </template>
-    </i18n-t>
-    <i18n-t class="text-h5" keypath="variants" tag="p" />
-    <i18n-t class="text-body-1" keypath="variants_body" tag="p" />
-    <i18n-t class="text-h6" keypath="variants_origin" tag="p" />
-    <i18n-t class="text-body-1" keypath="variants_origin_body" tag="p" />
-    <i18n-t class="text-h6" keypath="variants_thumbnail" tag="p" />
-    <i18n-t class="text-body-1" keypath="variants_thumbnail_body" tag="p" />
-    <i18n-t class="text-h6" keypath="variants_real_esrgan" tag="p" />
-    <i18n-t class="text-body-1" keypath="variants_real_esrgan_body" tag="p">
-      <template #real_esrgan>
-        <a href="https://github.com/xinntao/Real-ESRGAN">{{ t('variants_real_esrgan') }}</a>
-      </template>
-    </i18n-t>
+
     <v-expansion-panels model-value="origin" multiple>
       <v-expansion-panel v-for="variant in art.variants" :key="variant.variation" :value="variant.variation">
         <v-expansion-panel-title class="text-uppercase">
-          {{ variant.variation }}
+          {{ t(`variants_${variant.variation}`) }}
         </v-expansion-panel-title>
         <v-expansion-panel-text>
+          <i18n-t class="text-h6" :keypath="`variants_${variant.variation}`" tag="p" />
+          <i18n-t class="text-body-1" :keypath="`variants_${variant.variation}_body`" tag="p" />
           <v-sheet>
             <img :src="api.contentSrcOf(art.id, variant.variation)" alt="" style="max-width: 100%" />
             <p class="text-caption">{{ art.id }} ({{ variant.contentWidth }}x{{ variant.contentHeight }})</p>
@@ -72,7 +39,8 @@
         </v-expansion-panel-text>
       </v-expansion-panel>
     </v-expansion-panels>
-    <art-panel-by-category v-if="siblings" :arts="siblings" />
+
+    <art-panel v-if="siblings" :arts="siblings" :title="t('siblings')" label="siblings" />
   </v-container>
   <v-sheet v-else class="h-screen d-flex justify-center align-center">
     <v-progress-circular indeterminate />
@@ -87,7 +55,7 @@ import { saveAs } from 'file-saver'
 import { useArkwaifu } from '@/stores/arkwaifu-api'
 import { storeToRefs } from 'pinia'
 import { useMetaStore } from '@/stores/meta'
-import ArtPanelByCategory from '@/components/story/ArtPanelByCategory.vue'
+import ArtPanel from '@/components/art/ArtPanel.vue'
 
 const props = defineProps<{
   id: string
@@ -171,59 +139,35 @@ ul {
 </style>
 
 <i18n lang="yaml" locale="en">
-comma: ', '
-category: category
-id: ID
-home_page: Home page
-body-1: >
-  The first part of the art's title is its {bold_category}, which is {category} in this case.
-  For more information of arts' category, please refer to {home}.
-  The second part of the art's title is its {bold_id}, which is {id} in this case.
-body-2: >
-  Please do not batch download arts, because it will quickly use up the server's traffic and bandwidth.
-  For those who want to download all arts from Arkwaifu, please refer to {arkwaifu_2x}.
-variants: Variants
-variants_body: >
-  Variants are different forms or versions for the same art.
-variants_origin: Origin
-variants_origin_body: >
-  Origin represents the original arts that are just the same as they were extracted directly from the game.
-  The maximum size for this variant can reach ~1MiB, and it is compressed in lossless mode.
+siblings: Siblings
+
+variants_origin: Original Image
+variants_origin_body: >-
+  The original image is the raw art extracted from the game. The maximum size of this variant can reach about 1 MiB (lossless compression).
 variants_thumbnail: Thumbnail
-variants_thumbnail_body: >
-  Variant 'thumbnail' are the reduced-size versions of arts. It is used for previewing the arts.
-  The maximum size for this variant can reach ~50 KiB, and it is compressed in lossy mode.
-variants_real_esrgan: Real-ESRGAN
-variants_real_esrgan_body: >
-  Variant 'Real-ESRGAN' are the enlarged versions of arts with {real_esrgan} super-resolution neural network by 4x.
-  The maximum size for this variant can reach ~8 MiB, and it is compressed in lossless mode.
+variants_thumbnail_body: >-
+  The thumbnail is a "scaled-down" version of the original image, used for previewing the art. The maximum size of this variant can reach about 50 KiB (lossy compression).
+variants_real-esrgan(realesrgan-x4plus): Real-ESRGAN (realesrgan-x4plus)
+variants_real-esrgan(realesrgan-x4plus)_body: >-
+  Real-ESRGAN is the art obtained by enlarging the original image 4x using the neural network Real-ESRGAN's model realesrgan-x4plus. Unlike realesrgan-x4plus-anime, realesrgan-x4plus tends to enlarge arts in a realistic style and process unclear details (such as object textures). This model has better visual effects in most cases than realesrgan-x4plus-anime. However, this model may cause "tearing" in some arts. The maximum size of this variant can reach about 8 MiB (lossless compression).
+variants_real-esrgan(realesrgan-x4plus-anime): Real-ESRGAN (realesrgan-x4plus-anime)
+variants_real-esrgan(realesrgan-x4plus-anime)_body: >-
+  Real-ESRGAN is the art obtained by enlarging the original image 4x using the neural network Real-ESRGAN's model realesrgan-x4plus-anime. Unlike realesrgan-x4plus, realesrgan-x4plus-anime tends to enlarge arts in an anime style without processing details (such as object textures) too much. The maximum size of this variant can reach about 8 MiB (lossless compression).
 </i18n>
 
 <i18n lang="yaml" locale="zh">
-comma: '，'
-category: 类别
-id: ID
-home_page: 首页
-body-1: >
-  标题的第一部分是该资源的{bold_category}，对这个资源而言则是 {category}。
-  关于资源的不同类别，请参照{home}。
-  标题的第二部分是该资源的{bold_id}，对这个资源而言则是 {id}。
-body-2: >
-  请不要批量下载资源，因为这会快速地消耗掉服务器的带宽。
-  你可以在 {arkwaifu_2x} 找到打包好的所有资源。
-variants: 变体
-variants_body: >
-  变体是同一个资源的不同变种或形式。
+siblings: 系列
+
 variants_origin: 原始图
-variants_origin_body: >
-  原始图就跟从游戏中解包出来的资源一模一样。
-  这个变体的最大大小可达约 1MiB（无损压缩）。
+variants_origin_body: >-
+  原始图是从游戏中解包出来的原始资源。这个变体的最大大小可达约 1 MiB（无损压缩）。
 variants_thumbnail: 缩略图
-variants_thumbnail_body: >
-  缩略图是原始图的“缩小版”，用来预览资源。
-  这个变体的最大大小可达约 50KiB（有损压缩）。
-variants_real_esrgan: Real-ESRGAN
-variants_real_esrgan_body: >
-  Real-ESRGAN 是原始图经过神经网络 {real_esrgan} 放大 4x 而得的资源。
-  这个变体的最大大小可达约 8MiB（无损压缩）。
+variants_thumbnail_body: >-
+  缩略图是原始图的“缩小版”，用来预览资源。这个变体的最大大小可达约 50 KiB（有损压缩）。
+variants_real-esrgan(realesrgan-x4plus): Real-ESRGAN (realesrgan-x4plus)
+variants_real-esrgan(realesrgan-x4plus)_body: >-
+  Real-ESRGAN 是原始图经过神经网络 Real-ESRGAN 的模型 realesrgan-x4plus 放大 4x 所得的资源。与 realesrgan-x4plus-anime 不同的是，realesrgan-x4plus 会更倾向于将资源放大为写实风格，会对看不清的细节（如物体的纹理）进行处理。此模型在大部分情况下视觉效果会优于 realesrgan-x4plus-anime。然而，此模型可能会在部分资源上出现“撕裂”的现象。这个变体的最大大小可达约 8 MiB（无损压缩）。
+variants_real-esrgan(realesrgan-x4plus-anime): Real-ESRGAN (realesrgan-x4plus-anime)
+variants_real-esrgan(realesrgan-x4plus-anime)_body: >-
+  Real-ESRGAN 是原始图经过神经网络 Real-ESRGAN 的模型 realesrgan-x4plus-anime 放大 4x 所得的资源。与 realesrgan-x4plus 不同的是，realesrgan-x4plus-anime 会更倾向于将资源放大为动漫风格，而不会对细节（如物体的纹理）进行过多的处理。这个变体的最大大小可达约 8 MiB（无损压缩）。
 </i18n>
