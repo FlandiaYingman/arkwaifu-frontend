@@ -52,25 +52,11 @@
         />
       </v-list-group>
       <v-list-item
-        :subtitle="t('nonStoriesSubtitle')"
-        :title="t('nonStoriesTitle')"
-        :to="{ name: 'Non-Stories' }"
-        color="primary"
-        prepend-icon="mdi-television-off"
-      />
-      <v-list-item
         :subtitle="t('galleriesSubtitle')"
         :title="t('galleriesTitle')"
         :to="{ name: 'Galleries' }"
         color="primary"
         prepend-icon="mdi-panorama-variant-outline"
-      />
-      <v-list-item
-        :subtitle="t('allSubtitle')"
-        :title="t('allTitle')"
-        :to="{ name: 'All' }"
-        color="primary"
-        prepend-icon="mdi-all-inclusive"
       />
       <v-list-item :title="t('aboutTitle')" :to="{ name: 'About' }" color="primary" prepend-icon="mdi-information" />
     </v-list>

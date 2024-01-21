@@ -13,11 +13,7 @@ export default {
   minorEventsSubtitle: '小型活动：（微型）故事集，etc.',
   othersTitle: '其它',
   othersSubtitle: '干员密录，etc.',
-  nonStoriesTitle: '非剧情',
-  nonStoriesSubtitle: '剧情中没有出现的资源',
   galleriesTitle: '画廊',
   galleriesSubtitle: '',
-  allTitle: '全部',
-  allSubtitle: '可能需要加载很长时间！',
   aboutTitle: '关于',
 }

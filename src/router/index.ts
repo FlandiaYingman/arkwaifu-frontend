@@ -6,10 +6,8 @@ const StoriesView = () => import('@/views/story/StoriesView.vue')
 const StoryGroupView = () => import('@/views/story/StoryGroupView.vue')
 const StoryStoryView = () => import('@/views/story/StoryStoryView.vue')
 const ArtView = () => import('@/views/art/ArtView.vue')
-const NonStoriesView = () => import('@/views/story/NonStoriesView.vue')
 const GalleriesView = () => import('@/views/gallery/GalleriesView.vue')
 const GalleryView = () => import('@/views/gallery/GalleryView.vue')
-const AllArtsView = () => import('@/views/art/AllArtsView.vue')
 const AboutView = () => import('@/views/AboutView.vue')
 
 const routes: Readonly<RouteRecordRaw[]> = [
@@ -69,11 +67,6 @@ const routes: Readonly<RouteRecordRaw[]> = [
         ],
       },
       {
-        path: 'non-stories',
-        name: 'Non-Stories',
-        component: NonStoriesView,
-      },
-      {
         path: 'galleries',
         name: 'Galleries',
         component: GalleriesView,
@@ -83,11 +76,6 @@ const routes: Readonly<RouteRecordRaw[]> = [
         name: 'Gallery',
         component: GalleryView,
         props: true,
-      },
-      {
-        path: 'all',
-        name: 'All',
-        component: AllArtsView,
       },
       {
         path: 'about',
