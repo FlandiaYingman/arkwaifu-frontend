@@ -117,24 +117,24 @@ available_arts:
   title: >
     Available Arts
   p1: >
-    Now, only arts that appear in the "in-game stories" are available, including {images}, {backgrounds} and {characters}.
+    Now, only arts that appear in the "in-game stories" are available, including Images, Backgrounds and Characters.
   images_title: >
     Images
   images_p1: >
     Images are the exquisite artworks that appear when some special events in the stories happen.
   images_c1: >
-    images/32_i18, from story "11-15 (淬火尘霾-土地震颤)", Logos casting a spell against 血魔大君
+    images/32_i18, from story "11-15 (Return To Mist - The Earth Shakes)", Logos casting a spell against Sanguinarch of Vampires
   backgrounds_title: >
     Backgrounds
   backgrounds_p1: >
     Backgrounds are the artworks that always appear during dialogue between characters.
-  backgrounds_c1: backgrounds/bg_courtyard, from the story "NL-2 (长夜临光-垂死的刺)", Nearl's courtyard, located in Kazimierz
+  backgrounds_c1: backgrounds/bg_courtyard, from story "NL-2 (Near Light - Last-Ditch Thrust)", Nearl's courtyard, located in Kazimierz
   characters_title: >
     Characters
   characters_p1: >
     Characters are the artworks that represent characters that appear during dialogue.
   characters_c1: >
-    characters/char_250_phantom_1#3$1, from the story "踏寻往昔之风-交错光影", Phantom, painful of taking his mask off
+    characters/char_250_phantom_1#3$1, from the story "Rewinding Breeze - Crisscrossing Shadows", Phantom, painful of taking his mask off
 </i18n>
 
 <i18n lang="yaml" locale="zh">
@@ -153,22 +153,22 @@ available_arts:
   title: >
     可用的资源
   p1: >
-    现在，Arkwaifu 只提供游戏中剧情出现的资源，包括 {images}、{backgrounds} 和 {characters}。
+    现在，Arkwaifu 只提供游戏中剧情出现（或可能出现）的资源，包括三种不同类型的资源：插画、背景和角色。
   images_title: >
-    Images
+    插画
   images_p1: >
-    Images 是当某些重要的事件发生时展示的图片资源。
+    插画是当某些重要的事件发生时展示的图片资源。
   images_c1: >
     images/32_i18, 剧情“11-15 (淬火尘霾-土地震颤)”，Logos 在施法对抗血魔大君
   backgrounds_title: >
-    Backgrounds
+    背景
   backgrounds_p1: >
-    Backgrounds 是角色在对话时总是在背景展示的图片资源。
+    背景是角色在对话时在背景展示的图片资源。
   backgrounds_c1: backgrounds/bg_courtyard, 剧情“NL-2 (长夜临光-垂死的刺)”，临光家的院子，位于卡西米尔
   characters_title: >
-    Characters
+    角色
   characters_p1: >
-    Characters 是角色在对话时代表角色的图片资源。
+    角色是角色在对话时代表角色的图片资源。
   characters_c1: >
     characters/char_250_phantom_1#3$1, 剧情“踏寻往昔之风-交错光影”，傀影，痛苦地摘掉面具
 </i18n>
