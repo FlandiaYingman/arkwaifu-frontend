@@ -1,6 +1,6 @@
 <template>
   <art-panel
-    v-for="category in Object.keys(artsByCategory)"
+    v-for="category in Object.values(Category).filter((el) => el in artsByCategory)"
     :key="category"
     :arts="artsByCategory[category]"
     :title="t(category)"
@@ -13,7 +13,7 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import _ from 'lodash'
-import { Art } from '@/arkwaifu-api'
+import { Art, Category } from '@/arkwaifu-api'
 import ArtPanel from '@/components/art/ArtPanel.vue'
 import { useI18n } from 'vue-i18n'
 import FloatingActionButton from '@/components/FloatingActionButton.vue'
