@@ -39,10 +39,6 @@
           </v-list-item>
         </v-list>
       </v-menu>
-
-      <template #append>
-        <v-btn class="mx-2" icon="mdi-dots-vertical" />
-      </template>
     </v-app-bar>
 
     <v-main>
