@@ -72,7 +72,7 @@
         </v-expansion-panel-text>
       </v-expansion-panel>
     </v-expansion-panels>
-    <arts-panel v-if="siblings" :arts="siblings" />
+    <art-panel-by-category v-if="siblings" :arts="siblings" />
   </v-container>
   <v-sheet v-else class="h-screen d-flex justify-center align-center">
     <v-progress-circular indeterminate />
@@ -87,7 +87,7 @@ import { saveAs } from 'file-saver'
 import { useArkwaifu } from '@/stores/arkwaifu-api'
 import { storeToRefs } from 'pinia'
 import { useMetaStore } from '@/stores/meta'
-import ArtsPanel from '@/components/story/ArtsPanel.vue'
+import ArtPanelByCategory from '@/components/story/ArtPanelByCategory.vue'
 
 const props = defineProps<{
   id: string

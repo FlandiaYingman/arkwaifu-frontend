@@ -1,11 +1,11 @@
 <template>
-  <arts-panel :arts="arts" />
+  <art-panel-by-category :arts="arts" />
 </template>
 
 <script lang="ts" setup>
 import { onMounted, ref, watchEffect } from 'vue'
 import { Art } from '@/arkwaifu-api'
-import ArtsPanel from '@/components/story/ArtsPanel.vue'
+import ArtPanelByCategory from '@/components/story/ArtPanelByCategory.vue'
 import { useArkwaifu } from '@/stores/arkwaifu-api'
 import { storeToRefs } from 'pinia'
 import { useMetaStore } from '@/stores/meta'

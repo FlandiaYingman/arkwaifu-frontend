@@ -1,7 +1,7 @@
 <template>
   <v-sheet v-if="group && story">
     <group-panel :focus="story" :group="group" />
-    <arts-panel :arts="artsOfStory" />
+    <art-panel-by-category :arts="artsOfStory" />
   </v-sheet>
   <v-sheet v-else class="h-screen d-flex justify-center align-center">
     <v-progress-circular indeterminate />
@@ -12,7 +12,7 @@
 import { ref, watchEffect } from 'vue'
 import { Art, Story, StoryGroup } from '@/arkwaifu-api'
 import GroupPanel from '@/components/story/GroupPanel.vue'
-import ArtsPanel from '@/components/story/ArtsPanel.vue'
+import ArtPanelByCategory from '@/components/story/ArtPanelByCategory.vue'
 import { useArkwaifu } from '@/stores/arkwaifu-api'
 import { storeToRefs } from 'pinia'
 import { useMetaStore } from '@/stores/meta'
