@@ -55,7 +55,7 @@ const props = withDefaults(
 
 const artsUnique = computed(() => _.uniqBy(props.arts, (el) => el.id))
 const artsResult = computed(() => (props.unique ? artsUnique.value : props.arts))
-const canHideArts = computed(() => props.arts.length > 8)
+const canHideArts = computed(() => props.arts.length >= 8)
 const doHideArts = ref(true)
 
 const carousel = ref<InstanceType<typeof ArtCarousel>>()
