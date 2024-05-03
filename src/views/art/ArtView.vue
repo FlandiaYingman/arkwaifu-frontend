@@ -56,6 +56,7 @@ import { useArkwaifu } from '@/stores/arkwaifu-api'
 import { storeToRefs } from 'pinia'
 import { useMetaStore } from '@/stores/meta'
 import ArtPanel from '@/components/art/ArtPanel.vue'
+import mime from 'mime-types'
 
 const props = defineProps<{
   id: string
@@ -78,16 +79,15 @@ watchEffect(async () => {
   }
 })
 
-function filename(variant: Variant): string {
+function filename(variant: Variant, format: string): string {
   let filename = variant.artID
-  if (variant.variation != Variation.Origin) {
-    filename += `.${variant.variation}`
-  }
+  if (variant.variation != Variation.Origin) filename += `.${variant.variation}`
+  filename += `.${mime.extension(format)}`
   return filename
 }
 
 function download(variant: Variant, format: string) {
-  const name = filename(variant)
+  const name = filename(variant, format)
   const url = api.contentSrcOf(variant.artID, variant.variation)
   if (format == 'image/webp') {
     saveAs(url, name)
